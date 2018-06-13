@@ -13,7 +13,7 @@ ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.05)
 INTERVAL = 5
 pedirDato = 1
 mensajeRecibido = 0
-tiempoParaLeer = 0
+tiempoParaLeer = 9999999999
 
 temperatura =random.randint(1,101)
 humedad = random.randint(1,101)
@@ -35,7 +35,7 @@ client.loop_start()
 
 try:
     while True:
-        if tiempoParaLeer > time.time():
+        if tiempoParaLeer >= time.time():
             if mensajeRecibido == 0:
                 print("pidiendo dato")
 
