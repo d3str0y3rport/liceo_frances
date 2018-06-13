@@ -34,9 +34,9 @@ client.loop_start()
 try:
     while True:
 
-        mensaje = b"""{"comKey": "qtshdye826qhsg*", "chip": "1", "id": "1000000002","operation": "getTemp","d1":0,"d2":0,"d3":0}"""
+        mensaje = b"""{"chip": "1","operation": "getTemp"}"""
+        mensaj2 = b"""{"chip": "1","operation": "getADAE"}"""
         ser.write(mensaje)
-        time.sleep(0.1)
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
@@ -44,11 +44,20 @@ try:
             data = json.loads(recibidoSerial)
             print('name', data['value'])
             temperatura = data['value']
+        ser.write(mensaje2)
+        if ser.in_waiting: 
+            recibidoSerial = ser.readline()
+            print ("Respuesta recibida: ", recibidoSerial)
+            recibidoSerial = recibidoSerial.decode("utf-8")
+            data = json.loads(recibidoSerial)
+            print('name', data['value'])
+            acumuladoAD = data['value']
+
         else:
             temperatura = random.randint(-50,50)
+            acumuladoAD = acumuladoAD + random.randint(1,10)
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
-        acumuladoAD = acumuladoAD + random.randint(1,10)
         acumuladoAI = acumuladoAI + random.randint(1,10)
         corriente = random.randint(1,101)
         voltaje = random.randint(114,122)
