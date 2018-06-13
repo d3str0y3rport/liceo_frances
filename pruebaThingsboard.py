@@ -72,7 +72,6 @@ try:
 
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
-            ser.flush()
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
