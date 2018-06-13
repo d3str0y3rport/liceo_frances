@@ -43,9 +43,9 @@ try:
 
                 #if pedirDato == 1:
                     #print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getTemp"}"""
-                    mensajeRecibido = 1
-                    ser.write(mensaje)
+                mensaje = b"""{"chip": "1","operation": "getTemp"}"""
+                mensajeRecibido = 1
+                ser.write(mensaje)
                
                 # elif pedirDato == 2:
                 #     print ("pedirDato???", pedirDato)
