@@ -64,7 +64,7 @@ try:
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
-                time.sleep(1)
+                #time.sleep(1)
                 tiempoParaLeer = time.time() + 5
 
             
