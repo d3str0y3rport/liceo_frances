@@ -41,11 +41,13 @@ try:
                 mensaje = b"""{"chip": "1","operation": "getTemp"}"""
                 mensajeRecibido = 1
                 pedirDato = 2
+                print ("mensajerecibido?",mensajeRecibido)
                 ser.write(mensaje)
            
             if pedirDato == 2:
                 mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
                 mensajeRecibido = 1 
+                print ("mensajerecibido?",mensajeRecibido)
                 pedirDato = 3
                 ser.write(mensaje)
 
