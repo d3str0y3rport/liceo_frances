@@ -36,24 +36,21 @@ try:
 
         mensaje = b"""{"chip": "1","operation": "getADAE"}"""
         ser.write(mensaje)
+        time.sleep(0.1)
         ser.flush()
-        if ser.in_waiting: 
-            recibidoSerial = ser.readline()
-            print ("Respuesta recibida: ", recibidoSerial)
-            recibidoSerial = recibidoSerial.decode("utf-8")
-            data = json.loads(recibidoSerial)
-            print (json.dumps(data, indent=4))
-            print('recibi:', data['value'])
-            if data['operation'] == "getTemp":
-                temperatura = data['value']
-            elif data['operation'] == "getADAE":
-                acumuladoAD = data['value']
-            else:
-                temperatura = -1
-                acumuladoAD = -1
+        recibidoSerial = ser.readline()
+        print ("Respuesta recibida: ", recibidoSerial)
+        recibidoSerial = recibidoSerial.decode("utf-8")
+        data = json.loads(recibidoSerial)
+        print (json.dumps(data, indent=4))
+        print('recibi:', data['value'])
+        if data['operation'] == "getTemp":
+            temperatura = data['value']
+        elif data['operation'] == "getADAE":
+            acumuladoAD = data['value']
         else:
-            temperatura = random.randint(-50,50)
-            acumuladoAD = acumuladoAD + random.randint(1,10)
+            temperatura = -1
+            acumuladoAD = -1
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
         acumuladoAI = acumuladoAI + random.randint(1,10)
