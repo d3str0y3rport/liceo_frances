@@ -13,6 +13,7 @@ while True:
 	if leido == 1:
 		ser.write(b"""{"chip": "1","operation": "getTemp"}""")
 		print("enviado")
+		leido = 0
 		ser.flush()
 
 	if ser.in_waiting:
