@@ -34,10 +34,11 @@ client.loop_start()
 try:
     while True:
 
-        #mensaje = b"""{"chip": "1","operation": "getTemp"}"""
         mensaje = b"""{"chip": "1","operation": "getADAE"}"""
         ser.write(mensaje)
-        if ser.in_waiting: 
+        time.sleep(0.05)
+        it True:
+        #if ser.in_waiting: 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
