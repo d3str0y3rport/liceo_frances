@@ -38,7 +38,6 @@ try:
         if mensajeRecibido == 0:
             print("pidiendo dato")
             if pedirDato == 1:
-                print("pidiendo dato")
                 mensaje = b"""{"chip": "1","operation": "getTemp"}"""
                 mensajeRecibido = 1
                 pedirDato = 2
