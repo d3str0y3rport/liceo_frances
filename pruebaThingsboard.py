@@ -34,8 +34,10 @@ client.loop_start()
 try:
     while True:
 
-        mensaje = b"""{"chip": "1","operation": "getADAE"}"""
+        mensaje = b"""{"chip": "1","operation": "getTemp"}"""
         ser.write(mensaje)
+
+
 
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
@@ -43,14 +45,14 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             print (json.dumps(data, indent=4))
-            print('recibido:', data['value'])
+            print('recibi:', data['value'])
             if data['operation'] == "getTemp":
                 temperatura = data['value']
-            else if data['operation'] == "getADAE":
-                acumuladoAD = data['value']
+            else:
+                temperatura = -1
         else:
             temperatura = random.randint(-50,50)
-            acumuladoAD = acumuladoAD + random.randint(1,10)
+        acumuladoAD = acumuladoAD + random.randint(1,10)
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
         acumuladoAI = acumuladoAI + random.randint(1,10)
