@@ -84,28 +84,35 @@ try:
                 print('Temperatura:', data['value'])
                 temperatura = data['value']
                 mensajeRecibido = 0
+                sensor_data = {'temperature': temperatura}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("temp enviada")
 
             elif data['operation'] == "getADAE":
                 print('Acumulado:', data['value'])
-                acumuladoAD = data['value']
                 mensajeRecibido = 0
+                sensor_data = {'acumuladoActivoDirecto': data['value']}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("ADAE enviada")
 
             elif data['operation'] == "getFrequency":
                 print('Frecuencia:', data['value'])
                 voltaje = data['value']
                 mensajeRecibido = 0
+                sensor_data = {'voltaje': data['value']}
+                print("Frecuencia enviada")
 
 
-        if enviarDatos == 1 :
-            humedad = random.randint(1,101)
-            potencia = random.randint(0,400)
-            acumuladoAI = acumuladoAI + random.randint(1,10)
-            corriente = random.randint(1,101)
-            sensor_data = {'temperature': temperatura, 'humidity': humedad, 'acumuladoActivoDirecto': acumuladoAD, 'acumuladoActivoInverso': acumuladoAI, 'potencia': potencia, 'voltaje': voltaje, 'corriente': corriente}
-            # Sending humidity and temperature data to ThingsBoard
-            client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-            print ("enviando")
-            enviarDatos = 0
+        # if enviarDatos == 1 :
+        #     humedad = random.randint(1,101)
+        #     potencia = random.randint(0,400)
+        #     acumuladoAI = acumuladoAI + random.randint(1,10)
+        #     corriente = random.randint(1,101)
+        #     sensor_data = {'temperature': temperatura, 'humidity': humedad, 'acumuladoActivoDirecto': acumuladoAD, 'acumuladoActivoInverso': acumuladoAI, 'potencia': potencia, 'voltaje': voltaje, 'corriente': corriente}
+        #     # Sending humidity and temperature data to ThingsBoard
+        #     client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+        #     print ("enviando")
+        #     enviarDatos = 0
         
 
 except KeyboardInterrupt:
