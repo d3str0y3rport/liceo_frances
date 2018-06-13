@@ -36,9 +36,8 @@ try:
 
         mensaje = b"""{"chip": "1","operation": "getADAE"}"""
         ser.write(mensaje)
-        time.sleep(0.05)
-        if True:
-        #if ser.in_waiting: 
+        time.sleep(1)
+        if ser.in_waiting: 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
