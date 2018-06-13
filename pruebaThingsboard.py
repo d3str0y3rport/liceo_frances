@@ -16,10 +16,7 @@ enviarDatos = 0
 tiempoParaLeer = 0
 contador = 0
 
-temperatura =random.randint(1,101)
-humedad = random.randint(1,101)
-acumuladoAD = random.randint(1,101)
-acumuladoAI = random.randint(1,101)
+sensor_data = {'frecuencia': 0, 'adae': 0, 'bdae': 0, 'cdae': 0, 'potenciaA': 0, 'potenciaB': 0, 'potenciaC': 0, 'voltaje': 0, 'corrienteA': 0, 'corrienteB': 0}, 'corrienteC': 0}}
 
 
 next_reading = time.time() 
@@ -31,6 +28,8 @@ client.username_pw_set(ACCESS_TOKEN)
 
 # Connect to ThingsBoard using default MQTT port and 60 seconds keepalive interval
 client.connect(THINGSBOARD_HOST, 1883, 60)
+
+client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
 
 #client.loop_start()
 
@@ -45,28 +44,71 @@ try:
 
                 if pedirDato == 1:
                     print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getTemp"}"""
+                    mensaje = b"""{"chip": "1","operation": "getADAE"}"""
                     mensajeRecibido = 1
                     ser.write(mensaje)
                
                 elif pedirDato == 2:
                     print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
+                    mensaje = b"""{"chip": "1","operation": "getBDAE"}""" 
                     mensajeRecibido = 1 
                     ser.write(mensaje)
 
                 elif pedirDato == 3:
                     print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
+                    mensaje = b"""{"chip": "1","operation": "getCDAE"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
                     contador = 1
 
                 elif pedirDato == 4:
                     print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+                    mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
+
+                elif pedirDato == 5:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getPowerA"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                elif pedirDato == 6:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getPowerB"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                elif pedirDato == 7:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getPowerC"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                elif pedirDato == 8:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getVoltageA"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                elif pedirDato == 9:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getCurrentA"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                elif pedirDato == 9:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getCurrentB"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                elif pedirDato == 9:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getCurrentC"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
 
                 if contador == 1:
                     tiempoParaLeer = time.time() + 5
@@ -82,32 +124,95 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             pedirDato = pedirDato + 1
-            if pedirDato >= 4:
+            if pedirDato >= 5:
                 pedirDato = 1
                 enviarDatos = 1
 
-            if data['operation'] == "getTemp":
+            if data['operation'] == "getADAE":
                 print('Temperatura:', data['value'])
                 temperatura = data['value']
                 mensajeRecibido = 0
-                sensor_data = {'temperature': temperatura}
-                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("temp enviada")
-
-            elif data['operation'] == "getADAE":
-                print('Acumulado:', data['value'])
-                mensajeRecibido = 0
-                sensor_data = {'acumuladoActivoDirecto': data['value']}
+                sensor_data = {'adae': temperatura}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
                 print("ADAE enviada")
+
+            elif data['operation'] == "getBDAE":
+                print('Acumulado:', data['value'])
+                mensajeRecibido = 0
+                sensor_data = {'bdae': data['value']}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("BDAE enviada")
+
+            elif data['operation'] == "getCDAE":
+                print('Frecuencia:', data['value'])
+                voltaje = data['value']
+                mensajeRecibido = 0
+                sensor_data = {'cdae': voltaje}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("CDAE enviada")
 
             elif data['operation'] == "getFrequency":
                 print('Frecuencia:', data['value'])
                 voltaje = data['value']
                 mensajeRecibido = 0
-                sensor_data = {'voltaje': voltaje}
+                sensor_data = {'frecuencia': voltaje}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("Frecuencia enviada")
+                print("frequencia enviada")
+
+            elif data['operation'] == "getPowerA":
+                print('Acumulado:', data['value'])
+                mensajeRecibido = 0
+                sensor_data = {'bdae': data['value']}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("BDAE enviada")
+
+            elif data['operation'] == "getPowerB":
+                print('Frecuencia:', data['value'])
+                voltaje = data['value']
+                mensajeRecibido = 0
+                sensor_data = {'cdae': voltaje}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("CDAE enviada")
+
+            elif data['operation'] == "getPowerC":
+                print('Frecuencia:', data['value'])
+                voltaje = data['value']
+                mensajeRecibido = 0
+                sensor_data = {'frecuencia': voltaje}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("frequencia enviada")
+
+            elif data['operation'] == "getVoltageA":
+                print('Frecuencia:', data['value'])
+                voltaje = data['value']
+                mensajeRecibido = 0
+                sensor_data = {'cdae': voltaje}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("CDAE enviada")
+
+            elif data['operation'] == "getCurrentA":
+                print('Frecuencia:', data['value'])
+                voltaje = data['value']
+                mensajeRecibido = 0
+                sensor_data = {'frecuencia': voltaje}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("frequencia enviada")
+
+            elif data['operation'] == "getCurrentB":
+                print('Frecuencia:', data['value'])
+                voltaje = data['value']
+                mensajeRecibido = 0
+                sensor_data = {'frecuencia': voltaje}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("frequencia enviada")
+
+            elif data['operation'] == "getCurrentC":
+                print('Frecuencia:', data['value'])
+                voltaje = data['value']
+                mensajeRecibido = 0
+                sensor_data = {'frecuencia': voltaje}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("frequencia enviada")
 
         
 
