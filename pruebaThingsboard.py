@@ -9,8 +9,7 @@ import random
 THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
 ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.05)
-# Data capture and upload interval in seconds. Less interval will eventually hang the DHT22.
-INTERVAL = 5
+
 pedirDato = 1
 mensajeRecibido = 0
 tiempoParaLeer = 0
@@ -45,31 +44,37 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getTemp"}"""
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    ser.flush()
                
                 elif pedirDato == 2:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
                     mensajeRecibido = 1 
                     ser.write(mensaje)
+                    ser.flush()
 
                 elif pedirDato == 3:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    ser.flush()
 
                 elif pedirDato == 4:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    ser.flush()
 
             tiempoParaLeer = time.time() + 5
 
             
 
         if ser.in_waiting: 
+
             recibidoSerial = ser.readline()
+            ser.flush()
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
@@ -122,10 +127,5 @@ try:
             temperatura = random.randint(-50,50)
             acumuladoAD = acumuladoAD + random.randint(1,10)
             voltaje = random.randint(114,122)
-        
 
-except KeyboardInterrupt:
-    pass
-
-#client.loop_stop()
 client.disconnect()
