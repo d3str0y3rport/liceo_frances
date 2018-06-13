@@ -46,8 +46,6 @@ try:
                 if pedirDato == 1:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getTemp"}"""
-                    time.sleep(1)
-                    print(ser.readline())
                     mensajeRecibido = 1
                     ser.write(mensaje)
                
@@ -78,38 +76,38 @@ try:
                 time.sleep(1)
             
             
-        # if ser.inWaiting():
-        #     recibidoSerial = ser.readline()
-        #     print ("Respuesta recibida: ", recibidoSerial)
-        #     recibidoSerial = recibidoSerial.decode("utf-8")
-        #     data = json.loads(recibidoSerial)
-        #     pedirDato = pedirDato + 1
-        #     if pedirDato >= 4:
-        #         pedirDato = 1
-        #         enviarDatos = 1
+        if ser.inWaiting():
+            recibidoSerial = ser.readline()
+            print ("Respuesta recibida: ", recibidoSerial)
+            recibidoSerial = recibidoSerial.decode("utf-8")
+            data = json.loads(recibidoSerial)
+            pedirDato = pedirDato + 1
+            if pedirDato >= 4:
+                pedirDato = 1
+                enviarDatos = 1
 
-        #     if data['operation'] == "getTemp":
-        #         print('Temperatura:', data['value'])
-        #         temperatura = data['value']
-        #         mensajeRecibido = 0
-        #         sensor_data = {'temperature': temperatura}
-        #         client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-        #         print("temp enviada")
+            if data['operation'] == "getTemp":
+                print('Temperatura:', data['value'])
+                temperatura = data['value']
+                mensajeRecibido = 0
+                sensor_data = {'temperature': temperatura}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("temp enviada")
 
-        #     elif data['operation'] == "getADAE":
-        #         print('Acumulado:', data['value'])
-        #         mensajeRecibido = 0
-        #         sensor_data = {'acumuladoActivoDirecto': data['value']}
-        #         client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-        #         print("ADAE enviada")
+            elif data['operation'] == "getADAE":
+                print('Acumulado:', data['value'])
+                mensajeRecibido = 0
+                sensor_data = {'acumuladoActivoDirecto': data['value']}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("ADAE enviada")
 
-        #     elif data['operation'] == "getFrequency":
-        #         print('Frecuencia:', data['value'])
-        #         voltaje = data['value']
-        #         mensajeRecibido = 0
-        #         sensor_data = {'voltaje': voltaje}
-        #         client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-        #         print("Frecuencia enviada")
+            elif data['operation'] == "getFrequency":
+                print('Frecuencia:', data['value'])
+                voltaje = data['value']
+                mensajeRecibido = 0
+                sensor_data = {'voltaje': voltaje}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                print("Frecuencia enviada")
 
         
 

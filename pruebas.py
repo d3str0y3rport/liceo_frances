@@ -1,11 +1,26 @@
+import time
+import serial
 import json
 
+class Output(asyncio.Protocol):
+    def connection_made(self, transport):
+        self.transport = transport
+        print('port opened', transport)
+        transport.serial.rts = False
+        transport.write(b'hello world\n')
 
-mensaje = b"""{ "comKey":"qtshdye826qhsg*", "chip":"1", "id":"1000000002", "operation":"getTemp", "d1":0, "d2":0, "d3":0 }"""
-mensaje = mensaje.decode("utf-8")
-data = json.loads(mensaje)
-print (json.dumps(data, indent=4))
+    def data_received(self, data):
+        print('data received', repr(data))
+        self.transport.close()
 
-respuesta = data['comKey']
+    def connection_lost(self, exc):
+        print('port closed')
+        asyncio.get_event_loop().stop()
 
-print('name', respuesta)
+
+loop = asyncio.get_event_loop()
+coro = serial.aio.create_serial_connection('/dev/ttyS1', 230400, timeout = 0.1)
+
+loop.run_until_complete(coro)
+loop.run_forever()
+loop.close()
