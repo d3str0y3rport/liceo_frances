@@ -13,6 +13,7 @@ ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.05)
 INTERVAL = 5
 pedirDato = 1
 mensajeRecibido = 0
+tiempoParaLeer = 0
 
 temperatura =random.randint(1,101)
 humedad = random.randint(1,101)
@@ -34,32 +35,35 @@ client.loop_start()
 
 try:
     while True:
+        if tiempoParaLeer > time.time():
+            if mensajeRecibido == 0:
+                print("pidiendo dato")
 
-        if mensajeRecibido == 0:
-            print("pidiendo dato")
-            if pedirDato == 1:
-                print ("pedirDato???", pedirDato)
-                mensaje = b"""{"chip": "1","operation": "getTemp"}"""
-                mensajeRecibido = 1
-                ser.write(mensaje)
-           
-            elif pedirDato == 2:
-                print ("pedirDato???", pedirDato)
-                mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
-                mensajeRecibido = 1 
-                ser.write(mensaje)
+                if pedirDato == 1:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getTemp"}"""
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+               
+                elif pedirDato == 2:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
+                    mensajeRecibido = 1 
+                    ser.write(mensaje)
 
-            elif pedirDato == 3:
-                print ("pedirDato???", pedirDato)
-                mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
-                mensajeRecibido = 1
-                ser.write(mensaje)
+                elif pedirDato == 3:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
 
-            elif pedirDato == 4:
-                print ("pedirDato???", pedirDato)
-                mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
-                mensajeRecibido = 1
-                ser.write(mensaje)
+                elif pedirDato == 4:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+            tiempoParaLeer = time.time() + 5
 
             
 
@@ -119,10 +123,10 @@ try:
             voltaje = random.randint(114,122)
         
 
-        next_reading += INTERVAL
-        sleep_time = next_reading-time.time()
-        if sleep_time > 0:
-            time.sleep(sleep_time)
+        #next_reading += INTERVAL
+        #sleep_time = next_reading - time.time()
+        #if sleep_time > 0:
+            #time.sleep(sleep_time)
 except KeyboardInterrupt:
     pass
 
