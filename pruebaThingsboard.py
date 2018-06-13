@@ -44,12 +44,14 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getTemp"}"""
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    ser.flush()
                
                 elif pedirDato == 2:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
                     mensajeRecibido = 1 
                     ser.write(mensaje)
+                    ser.flush()
 
                 elif pedirDato == 3:
                     print ("pedirDato???", pedirDato)
@@ -62,6 +64,7 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    ser.flush()
 
             tiempoParaLeer = time.time() + 5
 
@@ -69,6 +72,7 @@ try:
 
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
+            ser.flush()
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
