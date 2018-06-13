@@ -63,7 +63,6 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             print (json.dumps(data, indent=4))
-            mensajeRecibido = 0
             pedirDato = pedirDato +1
             if pedirDato >= 4:
                 pedirDato = 1
@@ -79,6 +78,8 @@ try:
                 # Sending humidity and temperature data to ThingsBoard
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
                 print ("enviando")
+                mensajeRecibido = 0
+
             elif data['operation'] == "getADAE":
                 print('Acumulado:', data['value'])
                 acumuladoAD = data['value']
@@ -89,6 +90,8 @@ try:
                 # Sending humidity and temperature data to ThingsBoard
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
                 print ("enviando")
+                mensajeRecibido = 0
+
             elif data['operation'] == "getFrequency":
                 print('Frecuencia:', data['value'])
                 voltaje = data['value']
@@ -99,6 +102,7 @@ try:
                 # Sending humidity and temperature data to ThingsBoard
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
                 print ("enviando")
+                mensajeRecibido = 0
 
             else:
                 temperatura = -1
