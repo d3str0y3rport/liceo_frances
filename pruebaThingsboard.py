@@ -8,7 +8,7 @@ import random
 
 THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
-ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.01)
+ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.05, write_timeout = 0.05)
 
 ser.timeout = 0.01
 pedirDato = 1
