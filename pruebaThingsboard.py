@@ -36,7 +36,18 @@ try:
 
         if pedirDato == 1:
             mensaje = b"""{"chip": "1","operation": "getTemp"}"""
-            ser.write(mensaje)
+       
+        if pedirDato == 2:
+            mensaje = b"""{"chip": "1","operation": "getTemp"}"""   
+
+        if pedirDato == 3:
+            mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+
+        if pedirDato == 3:
+            mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+
+        ser.write(mensaje)
+
 
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
@@ -44,6 +55,9 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             print (json.dumps(data, indent=4))
+            pedirDato = pedirDato +1
+            if pedirDato >= 4:
+                pedirDato = 0
             if data['operation'] == "getTemp":
                 print('Temperatura:', data['value'])
                 temperatura = data['value']
