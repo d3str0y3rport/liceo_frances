@@ -35,6 +35,8 @@ client.loop_start()
 
 try:
     while True:
+
+        print(time.time())
         if tiempoParaLeer >= time.time():
             if mensajeRecibido == 0:
                 print("pidiendo dato")
@@ -123,10 +125,6 @@ try:
             voltaje = random.randint(114,122)
         
 
-        #next_reading += INTERVAL
-        #sleep_time = next_reading - time.time()
-        #if sleep_time > 0:
-            #time.sleep(sleep_time)
 except KeyboardInterrupt:
     pass
 
