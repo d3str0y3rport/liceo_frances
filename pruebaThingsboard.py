@@ -127,5 +127,3 @@ try:
             temperatura = random.randint(-50,50)
             acumuladoAD = acumuladoAD + random.randint(1,10)
             voltaje = random.randint(114,122)
-
-client.disconnect()
