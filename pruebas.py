@@ -15,6 +15,6 @@ while True:
 
 	if ser.in_waiting: 
 		mensajerecibido = ser.readline()
-    	print ("recibido del serial: " , mensajerecibido)
+    	print ("recibido del serial: ", mensajerecibido)
     
 
