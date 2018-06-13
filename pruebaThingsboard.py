@@ -65,7 +65,7 @@ try:
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
-                time.sleep(1)
+                time.sleep(0.5)
                 tiempoParaLeer = time.time() + 5
 
             
@@ -95,13 +95,6 @@ try:
                 voltaje = data['value']
                 mensajeRecibido = 0
 
-            else:
-                temperatura = -1
-                acumuladoAD = -1
-        else:
-            temperatura = random.randint(-50,50)
-            acumuladoAD = acumuladoAD + random.randint(1,10)
-            voltaje = random.randint(114,122)
 
         if enviarDatos == 1 :
             humedad = random.randint(1,101)
