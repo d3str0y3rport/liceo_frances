@@ -34,7 +34,7 @@ client.loop_start()
 try:
     while True:
 
-        mensaje = """{"comKey": "qtshdye826qhsg*", "chip": "1", "id": "1000000002","operation": "getTemp","d1":0,"d2":0,"d3":0}"""
+        mensaje = b"""{"comKey": "qtshdye826qhsg*", "chip": "1", "id": "1000000002","operation": "getTemp","d1":0,"d2":0,"d3":0}"""
         ser.write(mensaje)
         time.sleep(0.1)
         if ser.in_waiting: 
