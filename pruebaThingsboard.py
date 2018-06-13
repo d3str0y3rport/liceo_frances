@@ -100,6 +100,7 @@ try:
                 voltaje = data['value']
                 mensajeRecibido = 0
                 sensor_data = {'voltaje': voltaje}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
                 print("Frecuencia enviada")
 
 
