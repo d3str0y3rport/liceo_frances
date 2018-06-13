@@ -16,7 +16,7 @@ enviarDatos = 0
 tiempoParaLeer = 0
 contador = 0
 
-sensor_data = {'frecuencia': 0, 'adae': 0, 'bdae': 0, 'cdae': 0, 'potenciaA': 0, 'potenciaB': 0, 'potenciaC': 0, 'voltaje': 0, 'corrienteA': 0, 'corrienteB': 0}, 'corrienteC': 0}}
+sensor_data = {'frecuencia': 0, 'adae': 0, 'bdae': 0, 'cdae': 0, 'potenciaA': 0, 'potenciaB': 0, 'potenciaC': 0, 'voltaje': 0, 'corrienteA': 0, 'corrienteB': 0, 'corrienteC': 0}
 
 
 next_reading = time.time() 
