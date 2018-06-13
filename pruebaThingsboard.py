@@ -41,29 +41,29 @@ try:
             
                 print("pidiendo dato")
 
-                if pedirDato == 1:
+                #if pedirDato == 1:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getTemp"}"""
                     mensajeRecibido = 1
                     ser.write(mensaje)
                
-                elif pedirDato == 2:
-                    print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
-                    mensajeRecibido = 1 
-                    ser.write(mensaje)
+                # elif pedirDato == 2:
+                #     print ("pedirDato???", pedirDato)
+                #     mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
+                #     mensajeRecibido = 1 
+                #     ser.write(mensaje)
 
-                elif pedirDato == 3:
-                    print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
-                    mensajeRecibido = 1
-                    ser.write(mensaje)
+                # elif pedirDato == 3:
+                #     print ("pedirDato???", pedirDato)
+                #     mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
+                #     mensajeRecibido = 1
+                #     ser.write(mensaje)
 
-                elif pedirDato == 4:
-                    print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
-                    mensajeRecibido = 1
-                    ser.write(mensaje)
+                # elif pedirDato == 4:
+                #     print ("pedirDato???", pedirDato)
+                #     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+                #     mensajeRecibido = 1
+                #     ser.write(mensaje)
 
                 ser.flush()
                 time.sleep(1)
