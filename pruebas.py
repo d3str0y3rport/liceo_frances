@@ -6,4 +6,6 @@ mensaje = mensaje.decode("utf-8")
 data = json.loads(mensaje)
 print (json.dumps(data, indent=4))
 
-print('name', data['comKey'])
+respuesta = data['comKey']
+
+print('name', respuesta)

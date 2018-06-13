@@ -43,7 +43,7 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             print('name', data['value'])
-            temperatura = -11
+            temperatura = data['value']
         else:
             temperatura = random.randint(-50,50)
         humedad = random.randint(1,101)
