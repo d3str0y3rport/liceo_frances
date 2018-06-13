@@ -38,12 +38,12 @@ try:
             mensaje = b"""{"chip": "1","operation": "getTemp"}"""
        
         if pedirDato == 2:
-            mensaje = b"""{"chip": "1","operation": "getTemp"}"""   
+            mensaje = b"""{"chip": "1","operation": "getADAE"}"""   
 
         if pedirDato == 3:
-            mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+            mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
 
-        if pedirDato == 3:
+        if pedirDato == 4:
             mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
 
         ser.write(mensaje)
@@ -64,19 +64,23 @@ try:
             elif data['operation'] == "getADAE":
                 print('Acumulado:', data['value'])
                 acumuladoAD = data['value']
+            elif data['operation'] == "getFrequency":
+                print('Frecuencia:', data['value'])
+                voltaje = data['value']
+
             else:
                 temperatura = -1
                 acumuladoAD = -1
         else:
             temperatura = random.randint(-50,50)
             acumuladoAD = acumuladoAD + random.randint(1,10)
+            voltaje = random.randint(114,122)
 
         
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
         acumuladoAI = acumuladoAI + random.randint(1,10)
         corriente = random.randint(1,101)
-        voltaje = random.randint(114,122)
         sensor_data = {'temperature': temperatura, 'humidity': humedad, 'acumuladoActivoDirecto': acumuladoAD, 'acumuladoActivoInverso': acumuladoAI, 'potencia': potencia, 'voltaje': voltaje, 'corriente': corriente}
         # Sending humidity and temperature data to ThingsBoard
         client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
