@@ -63,7 +63,7 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
-                time.sleep()
+                time.sleep(1)
                 tiempoParaLeer = time.time() + 5
 
             
