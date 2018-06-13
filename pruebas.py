@@ -13,8 +13,8 @@ while True:
 	print("enviado")
 	ser.flush()
 
-	if ser.in_waiting: 
+	if ser.in_waiting:
 		mensajerecibido = ser.readline()
-    	print ("recibido del serial: ", mensajerecibido)
+		print ("recibido del serial: ", mensajerecibido)
     
 
