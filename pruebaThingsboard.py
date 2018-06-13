@@ -1,15 +1,16 @@
 import os
 import time
 import sys
+import serial
 import paho.mqtt.client as mqtt
 import json
 import random
 
 THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
-
+ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 # Data capture and upload interval in seconds. Less interval will eventually hang the DHT22.
-INTERVAL=2
+INTERVAL = 30
 
 temperatura =random.randint(1,101)
 humedad = random.randint(1,101)
@@ -32,7 +33,16 @@ client.loop_start()
 
 try:
     while True:
-        temperatura =random.randint(-50,50)
+
+        mensaje = "{"comKey": "qtshdye826qhsg*", "chip": "1", "id": "1000000002","operation": "getTemp","d1":0,"d2":0,"d3":0}"
+        ser.write(mensaje)
+        time.sleep(0.1)
+        if ser.in_waiting: 
+            recibidoSerial = ser.readline()
+            print ("Respuesta recibida: ", recibidoSerial)
+
+        temperatura = recibidoSerial
+        #temperatura = random.randint(-50,50)
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
         acumuladoAD = acumuladoAD + random.randint(1,10)
