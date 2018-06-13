@@ -39,7 +39,7 @@ try:
         time.sleep(0.1)
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
-            print ("Respuesta recibidaAA: ", recibidoSerial)
+            print ("Respuesta recibida: ", recibidoSerial)
             temperatura = recibidoSerial
         else:
             temperatura = random.randint(-50,50)
@@ -52,7 +52,7 @@ try:
         sensor_data = {'temperature': temperatura, 'humidity': humedad, 'acumuladoActivoDirecto': acumuladoAD, 'acumuladoActivoInverso': acumuladoAI, 'potencia': potencia, 'voltaje': voltaje, 'corriente': corriente}
         # Sending humidity and temperature data to ThingsBoard
         client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-        print ("enviando")
+        print ("enviandoAAA")
 
         next_reading += INTERVAL
         sleep_time = next_reading-time.time()
