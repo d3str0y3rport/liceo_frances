@@ -69,7 +69,7 @@ try:
 
             
         ser.flush()
-        if ser.in_waiting
+        if ser.in_waiting:
 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
