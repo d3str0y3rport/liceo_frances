@@ -39,7 +39,7 @@ try:
         time.sleep(0.1)
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
-            print ("Respuesta recibida: ", recibidoSerial)
+            print ("Respuesta recibidaAA: ", recibidoSerial)
             temperatura = recibidoSerial
         else:
             temperatura = random.randint(-50,50)
