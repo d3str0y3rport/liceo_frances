@@ -35,7 +35,7 @@ try:
     while True:
 
         mensaje = b"""{"chip": "1","operation": "getTemp"}"""
-        mensaj2 = b"""{"chip": "1","operation": "getADAE"}"""
+        mensaje2 = b"""{"chip": "1","operation": "getADAE"}"""
         ser.write(mensaje)
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
