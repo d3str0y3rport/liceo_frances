@@ -64,8 +64,10 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    
+                ser.flush()
+                time.sleep(1)
 
-                time.sleep(0.5)
                 tiempoParaLeer = time.time() + 5
 
             
@@ -74,7 +76,6 @@ try:
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
-            print (json.dumps(data, indent=4))
             pedirDato = pedirDato + 1
             if pedirDato >= 4:
                 pedirDato = 1
