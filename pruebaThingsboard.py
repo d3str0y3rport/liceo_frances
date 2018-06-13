@@ -10,6 +10,7 @@ THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
 ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.01)
 
+ser.timeout = 0.01
 pedirDato = 1
 mensajeRecibido = 0
 tiempoParaLeer = 0
@@ -51,7 +52,6 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
                     mensajeRecibido = 1 
                     ser.write(mensaje)
-                    ser.flush()
 
                 elif pedirDato == 3:
                     print ("pedirDato???", pedirDato)
@@ -64,13 +64,13 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
-                    ser.flush()
 
             tiempoParaLeer = time.time() + 5
 
             
+        ser.flush()
+        if ser.in_waiting
 
-        if ser.in_waiting: 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
