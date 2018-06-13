@@ -42,7 +42,7 @@ try:
                 print("pidiendo dato")
 
                 #if pedirDato == 1:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getTemp"}"""
                     mensajeRecibido = 1
                     ser.write(mensaje)
