@@ -14,6 +14,7 @@ pedirDato = 1
 mensajeRecibido = 0
 enviarDatos = 0
 tiempoParaLeer = 0
+contador = 0
 
 temperatura =random.randint(1,101)
 humedad = random.randint(1,101)
@@ -36,8 +37,8 @@ client.connect(THINGSBOARD_HOST, 1883, 60)
 try:
     while True:
 
-        if mensajeRecibido == 0:
-            if time.time() >= tiempoParaLeer:
+        if time.time() >= tiempoParaLeer:
+            if mensajeRecibido == 0:
             
                 print("pidiendo dato")
                 ser.flush()
@@ -59,6 +60,7 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    contador = 1
 
                 elif pedirDato == 4:
                     print ("pedirDato???", pedirDato)
@@ -66,11 +68,13 @@ try:
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
+                if contador == 1:
+                    tiempoParaLeer = time.time() + 5
+                    contador = 0
+
                 
                 time.sleep(1)
-
-                tiempoParaLeer = time.time() + 5
-
+            
             
         if ser.inWaiting():
             recibidoSerial = ser.readline()
@@ -105,6 +109,7 @@ try:
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
                 print("Frecuencia enviada")
 
+        
 
         # if enviarDatos == 1 :
         #     humedad = random.randint(1,101)
