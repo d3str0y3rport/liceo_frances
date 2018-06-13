@@ -8,7 +8,7 @@ import random
 
 THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
-ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.05, write_timeout = 0.05)
+ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.05)
 
 pedirDato = 1
 mensajeRecibido = 0
@@ -40,32 +40,33 @@ try:
             if time.time() >= tiempoParaLeer:
             
                 print("pidiendo dato")
-
-                #if pedirDato == 1:
-                    #print ("pedirDato???", pedirDato)
-                mensaje = b"""{"chip": "1","operation": "getTemp"}"""
-                mensajeRecibido = 1
-                ser.write(mensaje)
-               
-                # elif pedirDato == 2:
-                #     print ("pedirDato???", pedirDato)
-                #     mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
-                #     mensajeRecibido = 1 
-                #     ser.write(mensaje)
-
-                # elif pedirDato == 3:
-                #     print ("pedirDato???", pedirDato)
-                #     mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
-                #     mensajeRecibido = 1
-                #     ser.write(mensaje)
-
-                # elif pedirDato == 4:
-                #     print ("pedirDato???", pedirDato)
-                #     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
-                #     mensajeRecibido = 1
-                #     ser.write(mensaje)
-
                 ser.flush()
+
+                if pedirDato == 1:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getTemp"}"""
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+               
+                elif pedirDato == 2:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
+                    mensajeRecibido = 1 
+                    ser.write(mensaje)
+
+                elif pedirDato == 3:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                elif pedirDato == 4:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                
                 time.sleep(1)
 
                 tiempoParaLeer = time.time() + 5
