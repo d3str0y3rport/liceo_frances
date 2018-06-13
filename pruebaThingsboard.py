@@ -49,7 +49,7 @@ try:
                 temperatura = data['value']
             elif data['operation'] == "getADAE":
                 print('Acumulado:', data['value'])
-                    acumuladoAD = data['value']
+                acumuladoAD = data['value']
             else:
                 temperatura = -1
                 acumuladoAD = -1
