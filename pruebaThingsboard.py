@@ -64,7 +64,7 @@ try:
             mensajeRecibido = 0
             pedirDato = pedirDato +1
             if pedirDato >= 4:
-                pedirDato = 0
+                pedirDato = 1
             if data['operation'] == "getTemp":
                 print('Temperatura:', data['value'])
                 temperatura = data['value']
