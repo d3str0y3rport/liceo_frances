@@ -52,7 +52,7 @@ try:
         sensor_data = {'temperature': temperatura, 'humidity': humedad, 'acumuladoActivoDirecto': acumuladoAD, 'acumuladoActivoInverso': acumuladoAI, 'potencia': potencia, 'voltaje': voltaje, 'corriente': corriente}
         # Sending humidity and temperature data to ThingsBoard
         client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-        print ("enviandoCCC")
+        print ("enviando")
 
         next_reading += INTERVAL
         sleep_time = next_reading-time.time()
