@@ -46,6 +46,8 @@ try:
                 if pedirDato == 1:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getTemp"}"""
+                    time.sleep(1)
+                    print(ser.readline())
                     mensajeRecibido = 1
                     ser.write(mensaje)
                
