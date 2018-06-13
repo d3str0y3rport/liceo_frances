@@ -99,7 +99,7 @@ try:
                 print('Frecuencia:', data['value'])
                 voltaje = data['value']
                 mensajeRecibido = 0
-                sensor_data = {'voltaje': data['value']}
+                sensor_data = {'voltaje': voltaje}
                 print("Frecuencia enviada")
 
 
