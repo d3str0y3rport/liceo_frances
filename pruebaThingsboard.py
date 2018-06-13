@@ -45,33 +45,36 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getTemp"}"""
                     mensajeRecibido = 1
                     ser.write(mensaje)
-                    ser.flush()
+                    ser.flushOutput()
                
                 elif pedirDato == 2:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
                     mensajeRecibido = 1 
                     ser.write(mensaje)
+                    ser.flushOutput()
 
                 elif pedirDato == 3:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    ser.flushOutput()
 
                 elif pedirDato == 4:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    ser.flushOutput()
 
             tiempoParaLeer = time.time() + 5
 
             
-        ser.flush()
         if ser.inWaiting():
 
             recibidoSerial = ser.readline()
+            ser.flushInput()
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
