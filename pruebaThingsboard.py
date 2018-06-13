@@ -47,10 +47,9 @@ try:
             print (json.dumps(data, indent=4))
             print('name', data['value'])
             temperatura = data['value']
-        ser.write(mensaje2)
         else:
             temperatura = random.randint(-50,50)
-            acumuladoAD = acumuladoAD + random.randint(1,10)
+        acumuladoAD = acumuladoAD + random.randint(1,10)
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
         acumuladoAI = acumuladoAI + random.randint(1,10)
