@@ -10,7 +10,6 @@ THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
 ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.05, write_timeout = 0.05)
 
-ser.timeout = 0.01
 pedirDato = 1
 mensajeRecibido = 0
 tiempoParaLeer = 0
@@ -64,7 +63,7 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
-
+                time.sleep()
                 tiempoParaLeer = time.time() + 5
 
             
