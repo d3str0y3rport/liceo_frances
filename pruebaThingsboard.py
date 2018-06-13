@@ -40,9 +40,9 @@ try:
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
-
-        temperatura = recibidoSerial
-        #temperatura = random.randint(-50,50)
+            temperatura = recibidoSerial
+        else:
+            temperatura = random.randint(-50,50)
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
         acumuladoAD = acumuladoAD + random.randint(1,10)
