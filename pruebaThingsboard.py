@@ -10,7 +10,7 @@ THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
 ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 # Data capture and upload interval in seconds. Less interval will eventually hang the DHT22.
-INTERVAL = 10
+INTERVAL = 5
 pedirDato = 1
 mensajeRecibido = 0
 
@@ -36,6 +36,7 @@ try:
     while True:
 
         if mensajeRecibido == 0:
+            print("pidiendo dato")
             if pedirDato == 1:
                 mensaje = b"""{"chip": "1","operation": "getTemp"}"""
                 mensajeRecibido = 1
