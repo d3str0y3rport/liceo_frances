@@ -34,11 +34,9 @@ client.loop_start()
 try:
     while True:
 
-        mensaje = b"""{"chip": "1","operation": "getTemp"}"""
-        mensaje2 = b"""{"chip": "1","operation": "getADAE"}"""
+        #mensaje = b"""{"chip": "1","operation": "getTemp"}"""
+        mensaje = b"""{"chip": "1","operation": "getADAE"}"""
         ser.write(mensaje)
-        time. sleep(0.1)
-        ser.write(mensaje2)
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
