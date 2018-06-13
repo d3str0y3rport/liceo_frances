@@ -10,7 +10,7 @@ ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 
 
 while True:
-	if leido = 1:
+	if leido == 1:
 		ser.write(b"""{"chip": "1","operation": "getTemp"}""")
 		print("enviado")
 		ser.flush()
