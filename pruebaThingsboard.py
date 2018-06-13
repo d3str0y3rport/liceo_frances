@@ -40,25 +40,21 @@ try:
             if pedirDato == 1:
                 mensaje = b"""{"chip": "1","operation": "getTemp"}"""
                 mensajeRecibido = 1
-                pedirDato = 2
                 print ("mensajerecibido?",mensajeRecibido)
                 ser.write(mensaje)
            
-            if pedirDato == 2:
+            elif pedirDato == 2:
                 mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
                 mensajeRecibido = 1 
                 print ("mensajerecibido?",mensajeRecibido)
-                pedirDato = 3
                 ser.write(mensaje)
 
-
-            if pedirDato == 3:
+            elif pedirDato == 3:
                 mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
                 mensajeRecibido = 1
-                pedirDato = 1
                 ser.write(mensaje)
 
-            if pedirDato == 4:
+            elif pedirDato == 4:
                 mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                 mensajeRecibido = 1
                 ser.write(mensaje)
@@ -71,7 +67,7 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             print (json.dumps(data, indent=4))
-            
+            pedirDato = pedirDato + 1
 
             if data['operation'] == "getTemp":
                 print('Temperatura:', data['value'])
