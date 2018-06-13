@@ -40,8 +40,12 @@ try:
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
-            
-        temperatura = random.randint(-50,50)
+            recibidoSerial = recibidoSerial.decode("utf-8")
+            data = json.loads(recibidoSerial)
+            print('name', data['value'])
+            temperatura = -11
+        else:
+            temperatura = random.randint(-50,50)
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
         acumuladoAD = acumuladoAD + random.randint(1,10)
