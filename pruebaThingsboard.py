@@ -36,8 +36,9 @@ client.connect(THINGSBOARD_HOST, 1883, 60)
 try:
     while True:
 
-        if time.time() >= tiempoParaLeer:
-            if mensajeRecibido == 0:
+        if mensajeRecibido == 0:
+            if time.time() >= tiempoParaLeer:
+            
                 print("pidiendo dato")
 
                 if pedirDato == 1:
@@ -64,13 +65,11 @@ try:
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
-            tiempoParaLeer = time.time() + 5
+                tiempoParaLeer = time.time() + 5
 
             
         if ser.inWaiting():
-
             recibidoSerial = ser.readline()
-            ser.flushInput()
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
