@@ -66,7 +66,7 @@ try:
                     ser.write(mensaje)
 
                 ser.flush()
-                time.sleep(0.1)
+                time.sleep(1)
 
                 tiempoParaLeer = time.time() + 5
 
