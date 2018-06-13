@@ -36,7 +36,7 @@ try:
 
         mensaje = b"""{"chip": "1","operation": "getADAE"}"""
         ser.write(mensaje)
-
+        ser.flush()
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
