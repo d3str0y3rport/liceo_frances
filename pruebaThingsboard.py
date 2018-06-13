@@ -11,13 +11,13 @@ ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
 ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 # Data capture and upload interval in seconds. Less interval will eventually hang the DHT22.
 INTERVAL = 15
+pedirDato = 1
 
 temperatura =random.randint(1,101)
 humedad = random.randint(1,101)
 acumuladoAD = random.randint(1,101)
 acumuladoAI = random.randint(1,101)
 
-sensor_data = {'temperature': temperatura, 'humidity': humedad}
 
 next_reading = time.time() 
 
@@ -34,26 +34,30 @@ client.loop_start()
 try:
     while True:
 
-        mensaje = b"""{"chip": "1","operation": "getADAE"}"""
-        ser.write(mensaje)
-        ser.flush()
+        if pedirDato == 1:
+            mensaje = b"""{"chip": "1","operation": "getTemp"}"""
+            ser.write(mensaje)
+
         if ser.in_waiting: 
             recibidoSerial = ser.readline()
             print ("Respuesta recibida: ", recibidoSerial)
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             print (json.dumps(data, indent=4))
-            print('recibi:', data['value'])
             if data['operation'] == "getTemp":
+                print('Temperatura:', data['value'])
                 temperatura = data['value']
             elif data['operation'] == "getADAE":
-                acumuladoAD = data['value']
+                print('Acumulado:', data['value'])
+                    acumuladoAD = data['value']
             else:
                 temperatura = -1
                 acumuladoAD = -1
         else:
             temperatura = random.randint(-50,50)
             acumuladoAD = acumuladoAD + random.randint(1,10)
+
+        
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
         acumuladoAI = acumuladoAI + random.randint(1,10)
