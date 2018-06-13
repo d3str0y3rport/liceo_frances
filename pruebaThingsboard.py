@@ -12,6 +12,7 @@ ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 # Data capture and upload interval in seconds. Less interval will eventually hang the DHT22.
 INTERVAL = 15
 pedirDato = 1
+mensajeRecibido = 0
 
 temperatura =random.randint(1,101)
 humedad = random.randint(1,101)
@@ -34,19 +35,24 @@ client.loop_start()
 try:
     while True:
 
-        if pedirDato == 1:
-            mensaje = b"""{"chip": "1","operation": "getTemp"}"""
-       
-        if pedirDato == 2:
-            mensaje = b"""{"chip": "1","operation": "getADAE"}"""   
+        if mensajeRecibido == 0:
+            if pedirDato == 1:
+                mensaje = b"""{"chip": "1","operation": "getTemp"}"""
+                mensajeRecibido = 1
+           
+            if pedirDato == 2:
+                mensaje = b"""{"chip": "1","operation": "getADAE"}""" 
+                mensajeRecibido = 1  
 
-        if pedirDato == 3:
-            mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
+            if pedirDato == 3:
+                mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
+                mensajeRecibido = 1
 
-        if pedirDato == 4:
-            mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+            if pedirDato == 4:
+                mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+                mensajeRecibido = 1
 
-        ser.write(mensaje)
+            ser.write(mensaje)
 
 
         if ser.in_waiting: 
@@ -55,6 +61,7 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             print (json.dumps(data, indent=4))
+            mensajeRecibido = 0
             pedirDato = pedirDato +1
             if pedirDato >= 4:
                 pedirDato = 0
