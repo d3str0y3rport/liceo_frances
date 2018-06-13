@@ -31,7 +31,7 @@ client.username_pw_set(ACCESS_TOKEN)
 # Connect to ThingsBoard using default MQTT port and 60 seconds keepalive interval
 client.connect(THINGSBOARD_HOST, 1883, 60)
 
-client.loop_start()
+#client.loop_start()
 
 try:
     while True:
@@ -127,5 +127,5 @@ try:
 except KeyboardInterrupt:
     pass
 
-client.loop_stop()
+#client.loop_stop()
 client.disconnect()
