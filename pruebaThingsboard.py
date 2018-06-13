@@ -12,6 +12,7 @@ ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.05, write_timeout = 0.05)
 
 pedirDato = 1
 mensajeRecibido = 0
+enviarDatos = 0
 tiempoParaLeer = 0
 
 temperatura =random.randint(1,101)
@@ -77,6 +78,7 @@ try:
             pedirDato = pedirDato + 1
             if pedirDato >= 4:
                 pedirDato = 1
+                enviarDatos = 1
 
             if data['operation'] == "getTemp":
                 print('Temperatura:', data['value'])
@@ -101,14 +103,16 @@ try:
             acumuladoAD = acumuladoAD + random.randint(1,10)
             voltaje = random.randint(114,122)
 
-        humedad = random.randint(1,101)
-        potencia = random.randint(0,400)
-        acumuladoAI = acumuladoAI + random.randint(1,10)
-        corriente = random.randint(1,101)
-        sensor_data = {'temperature': temperatura, 'humidity': humedad, 'acumuladoActivoDirecto': acumuladoAD, 'acumuladoActivoInverso': acumuladoAI, 'potencia': potencia, 'voltaje': voltaje, 'corriente': corriente}
-        # Sending humidity and temperature data to ThingsBoard
-        client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-        print ("enviando")
+        if enviarDatos == 1 :
+            humedad = random.randint(1,101)
+            potencia = random.randint(0,400)
+            acumuladoAI = acumuladoAI + random.randint(1,10)
+            corriente = random.randint(1,101)
+            sensor_data = {'temperature': temperatura, 'humidity': humedad, 'acumuladoActivoDirecto': acumuladoAD, 'acumuladoActivoInverso': acumuladoAI, 'potencia': potencia, 'voltaje': voltaje, 'corriente': corriente}
+            # Sending humidity and temperature data to ThingsBoard
+            client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+            print ("enviando")
+            enviarDatos = 0
         
 
 except KeyboardInterrupt:
