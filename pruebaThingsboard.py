@@ -10,7 +10,7 @@ THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
 ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 # Data capture and upload interval in seconds. Less interval will eventually hang the DHT22.
-INTERVAL = 30
+INTERVAL = 15
 
 temperatura =random.randint(1,101)
 humedad = random.randint(1,101)
@@ -34,7 +34,7 @@ client.loop_start()
 try:
     while True:
 
-        mensaje = b"""{"chip": "1","operation": "getADAE"}"""
+        mensaje = b"""{"chip": "1","operation": "getTemp"}"""
         ser.write(mensaje)
 
 
