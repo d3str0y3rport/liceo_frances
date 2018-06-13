@@ -45,14 +45,14 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             print (json.dumps(data, indent=4))
-            print('name', data['value'])
+            print('recibido:', data['value'])
             if data['operation'] == "getTemp":
                 temperatura = data['value']
-            else:
-                temperatura = -1
+            else if data['operation'] == "getADAE":
+                acumuladoAD = data['value']
         else:
             temperatura = random.randint(-50,50)
-        acumuladoAD = acumuladoAD + random.randint(1,10)
+            acumuladoAD = acumuladoAD + random.randint(1,10)
         humedad = random.randint(1,101)
         potencia = random.randint(0,400)
         acumuladoAI = acumuladoAI + random.randint(1,10)
