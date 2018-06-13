@@ -2,25 +2,17 @@ import time
 import serial
 import json
 
-class Output(asyncio.Protocol):
-    def connection_made(self, transport):
-        self.transport = transport
-        print('port opened', transport)
-        transport.serial.rts = False
-        transport.write(b'hello world\n')
+mensajeBandera = False
+mensajeRecibido = ""
 
-    def data_received(self, data):
-        print('data received', repr(data))
-        self.transport.close()
-
-    def connection_lost(self, exc):
-        print('port closed')
-        asyncio.get_event_loop().stop()
+ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 
 
-loop = asyncio.get_event_loop()
-coro = serial.aio.create_serial_connection('/dev/ttyS1', 230400, timeout = 0.1)
+while True:
+	ser.write(b"""{"chip": "1","operation": "getTemp"}""")
+	ser.flush()
 
-loop.run_until_complete(coro)
-loop.run_forever()
-loop.close()
+if ser.in_waiting: 
+    print ("recibido del serial: " , ser.readline())
+    
+
