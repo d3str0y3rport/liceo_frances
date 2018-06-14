@@ -151,7 +151,7 @@ try:
 
             elif data['operation'] == "getFrequency":
                 value = data['value']
-                value = value/1000.0
+                value = value/100.0
                 sensor_data = {'frecuencia': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
                 mensajeRecibido = 0
