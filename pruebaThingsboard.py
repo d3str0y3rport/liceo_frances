@@ -113,7 +113,7 @@ try:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
-                    ser.write(mensaje)getPowerT
+                    ser.write(mensaje)
 
                 elif pedirDato == 13:
                     print ("pedirDato???", pedirDato)
