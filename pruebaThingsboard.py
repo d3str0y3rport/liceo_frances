@@ -97,13 +97,13 @@ try:
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
-                elif pedirDato == 9:
+                elif pedirDato == 10:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCurrentB"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
-                elif pedirDato == 9:
+                elif pedirDato == 11:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCurrentC"}""" 
                     mensajeRecibido = 1
@@ -123,7 +123,7 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             pedirDato = pedirDato + 1
-            if pedirDato >= 10:
+            if pedirDato >= 12:
                 pedirDato = 1
                 enviarDatos = 1
 
