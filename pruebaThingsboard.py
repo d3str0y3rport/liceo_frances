@@ -114,7 +114,6 @@ try:
                     tiempoParaLeer = time.time() + 5
                     contador = 0
 
-                
                 time.sleep(1)
             
             
@@ -124,95 +123,87 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             pedirDato = pedirDato + 1
-            if pedirDato >= 5:
+            if pedirDato >= 10:
                 pedirDato = 1
                 enviarDatos = 1
 
             if data['operation'] == "getADAE":
-                print('Temperatura:', data['value'])
-                temperatura = data['value']
-                mensajeRecibido = 0
-                sensor_data = {'adae': temperatura}
+                value = data['value']
+                sensor_data = {'adae': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("ADAE enviada")
+                mensajeRecibido = 0
+                print(value)
+
 
             elif data['operation'] == "getBDAE":
-                print('Acumulado:', data['value'])
-                mensajeRecibido = 0
-                sensor_data = {'bdae': data['value']}
+                value = data['value']
+                sensor_data = {'bdae': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("BDAE enviada")
+                mensajeRecibido = 0
+                print(value)
 
             elif data['operation'] == "getCDAE":
-                print('Frecuencia:', data['value'])
-                voltaje = data['value']
-                mensajeRecibido = 0
-                sensor_data = {'cdae': voltaje}
+                value = data['value']
+                sensor_data = {'cdae': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("CDAE enviada")
+                mensajeRecibido = 0
+                print(value)
 
             elif data['operation'] == "getFrequency":
-                print('Frecuencia:', data['value'])
-                voltaje = data['value']
-                mensajeRecibido = 0
-                sensor_data = {'frecuencia': voltaje}
+                value = data['value']
+                sensor_data = {'frecuencia': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("frequencia enviada")
+                mensajeRecibido = 0
+                print(value)
 
             elif data['operation'] == "getPowerA":
-                print('Acumulado:', data['value'])
-                mensajeRecibido = 0
-                sensor_data = {'bdae': data['value']}
+                value = data['value']
+                sensor_data = {'potenciaA': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("BDAE enviada")
+                mensajeRecibido = 0
+                print(value)
 
             elif data['operation'] == "getPowerB":
-                print('Frecuencia:', data['value'])
-                voltaje = data['value']
-                mensajeRecibido = 0
-                sensor_data = {'cdae': voltaje}
+                value = data['value']
+                sensor_data = {'potenciaB': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("CDAE enviada")
+                mensajeRecibido = 0
+                print(value)
 
             elif data['operation'] == "getPowerC":
-                print('Frecuencia:', data['value'])
-                voltaje = data['value']
-                mensajeRecibido = 0
-                sensor_data = {'frecuencia': voltaje}
+                value = data['value']
+                sensor_data = {'potenciaC': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("frequencia enviada")
+                mensajeRecibido = 0
+                print(value)
 
             elif data['operation'] == "getVoltageA":
-                print('Frecuencia:', data['value'])
-                voltaje = data['value']
-                mensajeRecibido = 0
-                sensor_data = {'cdae': voltaje}
+                value = data['value']
+                sensor_data = {'voltaje': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("CDAE enviada")
+                mensajeRecibido = 0
+                print(value)
 
             elif data['operation'] == "getCurrentA":
-                print('Frecuencia:', data['value'])
-                voltaje = data['value']
-                mensajeRecibido = 0
-                sensor_data = {'frecuencia': voltaje}
+                value = data['value']
+                sensor_data = {'corrienteA': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("frequencia enviada")
+                mensajeRecibido = 0
+                print(value)
 
             elif data['operation'] == "getCurrentB":
-                print('Frecuencia:', data['value'])
-                voltaje = data['value']
-                mensajeRecibido = 0
-                sensor_data = {'frecuencia': voltaje}
+                value = data['value']
+                sensor_data = {'corrienteB': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("frequencia enviada")
+                mensajeRecibido = 0
+                print(value)
 
             elif data['operation'] == "getCurrentC":
-                print('Frecuencia:', data['value'])
-                voltaje = data['value']
-                mensajeRecibido = 0
-                sensor_data = {'frecuencia': voltaje}
+                value = data['value']
+                sensor_data = {'corrienteC': value}
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
-                print("frequencia enviada")
+                mensajeRecibido = 0
+                print(value)
 
         
 
