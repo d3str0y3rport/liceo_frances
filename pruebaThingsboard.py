@@ -16,7 +16,7 @@ enviarDatos = 0
 tiempoParaLeer = 0
 contador = 0
 
-sensor_data = {'frecuencia': 0, 'adae': 0, 'bdae': 0, 'cdae': 0, 'potenciaA': 0, 'potenciaB': 0, 'potenciaC': 0, 'voltaje': 0, 'corrienteA': 0, 'corrienteB': 0, 'corrienteC': 0}
+sensor_data = {'frecuencia': 0, 'temperature': 0, 'adae': 0, 'bdae': 0, 'cdae': 0, 'potenciaA': 0, 'potenciaB': 0, 'potenciaC': 0, 'voltaje': 0, 'corrienteA': 0, 'corrienteB': 0, 'corrienteC': 0}
 
 
 next_reading = time.time() 
@@ -109,6 +109,12 @@ try:
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
+                elif pedirDato == 12:
+                    print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
 
                 if contador == 1:
                     tiempoParaLeer = time.time() + 5
@@ -123,7 +129,7 @@ try:
             recibidoSerial = recibidoSerial.decode("utf-8")
             data = json.loads(recibidoSerial)
             pedirDato = pedirDato + 1
-            if pedirDato >= 12:
+            if pedirDato >= 13:
                 pedirDato = 1
                 enviarDatos = 1
 
@@ -205,6 +211,14 @@ try:
                 client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
                 mensajeRecibido = 0
                 print(value)
+
+            elif data['operation'] == "getTemp":
+                value = data['value']
+                sensor_data = {'temperature': value}
+                client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+                mensajeRecibido = 0
+                print(value)
+
 
         
 
