@@ -50,11 +50,4 @@ while True:
 		# cur.execute('SELECT value FROM ConsumoA1 WHERE timestampDato = ? ', ('0001-06-16 10:09:00', ))
 		# artist_id = cur.fetchone()[0]
 		# print(artist_id)
-
-
-		tiempoLeido = datetime.now().minute + 1
 		conn.commit()
-
-
-
-

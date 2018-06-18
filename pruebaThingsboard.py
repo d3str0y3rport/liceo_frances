@@ -8,7 +8,7 @@ import random
 
 THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
-ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.05)
+ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 
 pedirDato = 1
 mensajeRecibido = 0
@@ -59,7 +59,7 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getCDAE"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
-                    contador = 1
+                    
 
                 elif pedirDato == 4:
                     print ("pedirDato???", pedirDato)
@@ -120,6 +120,7 @@ try:
                     mensaje = b"""{"chip": "1","operation": "getPowerT"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
+                    contador = 1
 
 
                 if contador == 1:
