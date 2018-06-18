@@ -15,6 +15,7 @@ queMinutoLeido1 = -1
 mensajeRecibido = 0
 sensor_data = {}#donde se guardan los datos constantemente (Volatil)
 
+
 conn = sqlite3.connect('datalog.sqlite')
 cur = conn.cursor()
 THINGSBOARD_HOST = 'clientes.egeo.co'
@@ -41,16 +42,26 @@ CREATE TABLE IF NOT EXISTS ConsumoC1 (
     timestampDato    TEXT UNIQUE,
     value	REAL
 );
+CREATE TABLE IF NOT EXISTS Temporales (
+    nombre    TEXT UNIQUE,
+    value	REAL
+);
 ''')
 
 
 def almacenarEnDatabase ():
 	horaTomada = datetime.now().replace(year=1, second=0, microsecond=0)
 
+	guardar en la base de datos el la resta de consumos
+
 	#toca hacer l a restar el valor anterior con el actual y guardarlo
 
-		 # cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
-		 # 	VALUES ( ?, ?)''', ( horaTomada, sensor_data['adae']) )
+	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
+		VALUES ( ?, ?)''', ( 'tempA1', sensor_data['adae']) )
+	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
+		VALUES ( ?, ?)''', ( 'tempB1', sensor_data['bdae']) )
+	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
+		VALUES ( ?, ?)''', ( 'tempC1', sensor_data['cdae']) )
 
 
 		 # cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 

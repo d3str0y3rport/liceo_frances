@@ -1,4 +1,5 @@
 import sqlite3
+import json
 from datetime import datetime, date
 
 
@@ -26,10 +27,11 @@ CREATE TABLE IF NOT EXISTS ConsumoC1 (
 ''')
 
 
-cur.execute("SELECT * FROM ConsumoA1 WHERE value=?", ('*',))
+cur.execute("SELECT * FROM ConsumoA1")
 rows = cur.fetchall()
-for row in rows:
-	print('recibido', row)
+
+print('recibido', dict(rows))
+	
 
 # cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
 # 	VALUES ( ?, ?)''', ( '0001-06-18 20:33:00', 4.232) )
