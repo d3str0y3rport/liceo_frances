@@ -18,8 +18,8 @@ conn = sqlite3.connect('datalog.sqlite')
 cur = conn.cursor()
 THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
-ser = serial.Serial()
-#ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
+#ser = serial.Serial()
+ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 
 
 # Crear parametros de la base de datos si no exixte
