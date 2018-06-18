@@ -54,7 +54,7 @@ def almacenarEnDatabase (horaTomada):
 		conn.commit()
 
 def enviarDatos ():
-	print(sensor_data)
+	print("sensor_data.....")
 
 
 
@@ -81,7 +81,7 @@ while True:
 
                 if pedirDato == 1:
                     print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getAIAE"}"""
+                    mensaje = b"""{"chip": "1","operation": "getADAE"}"""
                     mensajeRecibido = 1
                     ser.write(mensaje)
                
@@ -173,7 +173,7 @@ while True:
 	                pedirDato = 1
 	                enviarDatos = 1
 
-	            if data['operation'] == "getAIAE":
+	            if data['operation'] == "getADAE":
 	                sensor_data['adae'] = data['value']
 	                mensajeRecibido = 0
 	                print(sensor_data)
