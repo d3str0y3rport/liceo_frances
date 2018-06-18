@@ -53,9 +53,9 @@ def almacenarEnDatabase (horaTomada):
 		# cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
 		# 	VALUES ( ?, ? )''', ( 'Pablo', 11) )
 		print("hi")
-		cur.execute('SELECT value FROM ConsumoA1 WHERE timestampDato = ? ', ('0001-06-16 10:09:00', ))
-		artist_id = cur.fetchone()[0]
-		print(artist_id)
+		# cur.execute('SELECT value FROM ConsumoA1 WHERE timestampDato = ? ', ('0001-06-16 10:09:00', ))
+		# artist_id = cur.fetchone()[0]
+		# print(artist_id)
 		conn.commit()
 
 def enviarNube ():
