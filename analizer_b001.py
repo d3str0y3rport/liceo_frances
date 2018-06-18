@@ -65,7 +65,7 @@ def enviarNube ():
 
 
 
-
+client.loop_start()
 
 while True:
 
@@ -246,3 +246,5 @@ while True:
 	                mensajeRecibido = 0
 	                #print(sensor_data)
 
+client.loop_stop()
+client.disconnect()
