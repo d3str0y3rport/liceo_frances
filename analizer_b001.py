@@ -49,13 +49,20 @@ def almacenarEnDatabase ():
 
 	#toca hacer l a restar el valor anterior con el actual y guardarlo
 
-		# cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
-		# 	VALUES ( ?, ?)''', ( horaTomada, 1.232) )
+		 cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
+		 	VALUES ( ?, ?)''', ( horaTomada, sensor_data['adae']) )
 
 
-		# cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
-		# 	VALUES ( ?, ? )''', ( 'Pablo', 11) )
-	print(horaTomada, sensor_data['adae'])
+		 cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
+		 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['bdae']) )
+
+
+		 cur.execute('''INSERT OR REPLACE INTO ConsumoC1 (timestampDato, value) 
+		 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['cdae']) )
+
+
+	print(horaTomada, sensor_data )
+	
 		# cur.execute('SELECT value FROM ConsumoA1 WHERE timestampDato = ? ', ('0001-06-16 10:09:00', ))
 		# artist_id = cur.fetchone()[0]
 		# print(artist_id)
@@ -139,29 +146,41 @@ while True:
 
                 elif pedirDato == 9:
                     #print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getCurrentA"}""" 
+                    mensaje = b"""{"chip": "1","operation": "getVoltageB"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 10:
                     #print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getCurrentB"}""" 
+                    mensaje = b"""{"chip": "1","operation": "getVoltageC"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 11:
                     #print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getCurrentC"}""" 
+                    mensaje = b"""{"chip": "1","operation": "getCurrentA"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 12:
                     #print ("pedirDato???", pedirDato)
-                    mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+                    mensaje = b"""{"chip": "1","operation": "getCurrentB"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 13:
+                    #print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getCurrentC"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                elif pedirDato == 14:
+                    #print ("pedirDato???", pedirDato)
+                    mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
+                    mensajeRecibido = 1
+                    ser.write(mensaje)
+
+                elif pedirDato == 15:
                     #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getPowerT"}""" 
                     mensajeRecibido = 1
@@ -178,7 +197,7 @@ while True:
 	            recibidoSerial = recibidoSerial.decode("utf-8")
 	            data = json.loads(recibidoSerial)
 	            pedirDato = pedirDato + 1
-	            if pedirDato >= 14:
+	            if pedirDato >= 16:
 	                pedirDato = 1
 	                enviarDatos = 1
 
@@ -219,6 +238,16 @@ while True:
 
 	            elif data['operation'] == "getVoltageA":
 	                sensor_data['voltajeA'] = data['value']
+	                mensajeRecibido = 0
+	                #print(sensor_data)
+
+	            elif data['operation'] == "getVoltageB":
+	                sensor_data['voltajeB'] = data['value']
+	                mensajeRecibido = 0
+	                #print(sensor_data)
+
+	            elif data['operation'] == "getVoltageC":
+	                sensor_data['voltajeC'] = data['value']
 	                mensajeRecibido = 0
 	                #print(sensor_data)
 
