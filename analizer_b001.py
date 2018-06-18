@@ -77,87 +77,87 @@ while True:
             if mensajeRecibido == 0:
             
                 print("pidiendo dato")
-                #ser.flush()
+                ser.flush()
 
                 if pedirDato == 1:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getADAE"}"""
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
                
                 elif pedirDato == 2:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getBDAE"}""" 
                     mensajeRecibido = 1 
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 3:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCDAE"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
                 
 
                 elif pedirDato == 4:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 5:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getPowerA"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 6:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getPowerB"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 7:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getPowerC"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 8:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getVoltageA"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 9:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCurrentA"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 10:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCurrentB"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 11:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCurrentC"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 12:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 elif pedirDato == 13:
                     print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getPowerT"}""" 
                     mensajeRecibido = 1
                     contador = 1
-                    #ser.write(mensaje)
+                    ser.write(mensaje)
 
                 if contador == 1:
                     tiempoParaLeer = time.time() + 35 #cada cuanto se piden los datos del PIC
