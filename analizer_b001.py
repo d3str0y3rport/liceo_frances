@@ -45,14 +45,17 @@ CREATE TABLE IF NOT EXISTS ConsumoC1 (
 
 
 def almacenarEnDatabase (horaTomada):
+	horaTomada = datetime.now().replace(year=1, second=0, microsecond=0)
 
 	#toca hacer l a restar el valor anterior con el actual y guardarlo
 
 		# cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
 		# 	VALUES ( ?, ?)''', ( horaTomada, 1.232) )
+
+
 		# cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
 		# 	VALUES ( ?, ? )''', ( 'Pablo', 11) )
-		print("hi")
+		print(horaTomada, sensor_data['adae'])
 		# cur.execute('SELECT value FROM ConsumoA1 WHERE timestampDato = ? ', ('0001-06-16 10:09:00', ))
 		# artist_id = cur.fetchone()[0]
 		# print(artist_id)
@@ -70,8 +73,6 @@ client.loop_start()
 while True:
 
 	leerMinuto = int(datetime.now().minute)
-	horaTomada = datetime.now().replace(year=1, second=0, microsecond=0)
-
 	if (((leerMinuto % 10) == 0) and (leerMinuto != queMinutoLeido)):
 		almacenarEnDatabase (horaTomada)
 		queMinutoLeido = leerMinuto
