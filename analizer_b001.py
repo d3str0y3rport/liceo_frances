@@ -73,7 +73,7 @@ client.loop_start()
 while True:
 
 	leerMinuto = int(datetime.now().minute)
-	if (((leerMinuto % 10) == 0) and (leerMinuto != queMinutoLeido)):
+	if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido)):
 		almacenarEnDatabase (horaTomada)
 		queMinutoLeido = leerMinuto
 
