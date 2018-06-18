@@ -59,6 +59,7 @@ def almacenarEnDatabase (horaTomada):
 		conn.commit()
 
 def enviarNube ():
+	client.connect(THINGSBOARD_HOST, 1883, 60)
 	client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
 	print("Enviado a la NUBE")
 
@@ -172,7 +173,7 @@ while True:
 
 	if ser.inWaiting():
 	            recibidoSerial = ser.readline()
-	            print ("Respuesta recibida: ", recibidoSerial)
+	            #print ("Respuesta recibida: ", recibidoSerial)
 	            recibidoSerial = recibidoSerial.decode("utf-8")
 	            data = json.loads(recibidoSerial)
 	            pedirDato = pedirDato + 1
