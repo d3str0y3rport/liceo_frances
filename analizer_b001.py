@@ -8,6 +8,7 @@ import serial
 
 contador = 0
 pedirDato = 1
+enviarDatos = 0
 tiempoParaLeer = 0
 queMinutoLeido = -1
 queMinutoLeido1 = -1
@@ -68,7 +69,7 @@ while True:
 		almacenarEnDatabase (horaTomada)
 		queMinutoLeido = leerMinuto
 
-	if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido) and (enviarDatos == 1)):
+	if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido1) and (enviarDatos == 1)):
 		enviarNube ()
 		enviarDatos = 0
 		queMinutoLeido1 = leerMinuto
