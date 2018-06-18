@@ -1,6 +1,6 @@
 import json
 
-sensor_data = {'juan': 123}
+sensor_data = {}
 
 sensor_data['juan'] = 123
 

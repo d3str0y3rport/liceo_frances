@@ -40,6 +40,9 @@ CREATE TABLE IF NOT EXISTS ConsumoC1 (
 
 
 def almacenarEnDatabase (horaTomada):
+
+	#toca hacer l a restar el valor anterior con el actual y guardarlo
+
 		# cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
 		# 	VALUES ( ?, ?)''', ( horaTomada, 1.232) )
 		# cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
@@ -51,7 +54,7 @@ def almacenarEnDatabase (horaTomada):
 		conn.commit()
 
 def enviarDatos ():
-		pass
+	print(sensor_data)
 
 
 
@@ -65,8 +68,9 @@ while True:
 		almacenarEnDatabase (horaTomada)
 		queMinutoLeido = leerMinuto
 
-	if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido)):
+	if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido) and (enviarDatos == 1)):
 		enviarDatos ()
+		enviarDatos = 0
 		queMinutoLeido1 = leerMinuto
 
 	if time.time() >= tiempoParaLeer:
