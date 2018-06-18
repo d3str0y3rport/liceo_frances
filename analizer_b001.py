@@ -87,80 +87,80 @@ while True:
                 ser.flush()
 
                 if pedirDato == 1:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getADAE"}"""
                     mensajeRecibido = 1
                     ser.write(mensaje)
                
                 elif pedirDato == 2:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getBDAE"}""" 
                     mensajeRecibido = 1 
                     ser.write(mensaje)
 
                 elif pedirDato == 3:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCDAE"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
                 
 
                 elif pedirDato == 4:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getFrequency"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 5:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getPowerA"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 6:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getPowerB"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 7:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getPowerC"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 8:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getVoltageA"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 9:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCurrentA"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 10:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCurrentB"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 11:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getCurrentC"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 12:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getTemp"}""" 
                     mensajeRecibido = 1
                     ser.write(mensaje)
 
                 elif pedirDato == 13:
-                    print ("pedirDato???", pedirDato)
+                    #print ("pedirDato???", pedirDato)
                     mensaje = b"""{"chip": "1","operation": "getPowerT"}""" 
                     mensajeRecibido = 1
                     contador = 1
@@ -183,65 +183,65 @@ while True:
 	            if data['operation'] == "getADAE":
 	                sensor_data['adae'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getBDAE":
 	                sensor_data['bdae'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getCDAE":
 	                sensor_data['cdae'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getFrequency":
 	                sensor_data['frecuencia'] = (data['value']/100.0)
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getPowerA":
 	                sensor_data['potenciaA'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getPowerB":
 	                sensor_data['potenciaB'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getPowerC":
 	                sensor_data['potenciaC'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getVoltageA":
 	                sensor_data['voltajeA'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getCurrentA":
 	                sensor_data['corrienteA'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getCurrentB":
 	                sensor_data['corrienteB'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getCurrentC":
 	                sensor_data['corrienteC'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getTemp":
 	                sensor_data['temperature'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
 	            elif data['operation'] == "getPowerT":
 	                sensor_data['potenciaTotal'] = data['value']
 	                mensajeRecibido = 0
-	                print(sensor_data)
+	                #print(sensor_data)
 
