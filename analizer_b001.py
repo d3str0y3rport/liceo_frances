@@ -21,6 +21,10 @@ THINGSBOARD_HOST = 'clientes.egeo.co'
 ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
 #ser = serial.Serial()
 ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
+client = mqtt.Client()
+client.username_pw_set(ACCESS_TOKEN)
+# Connect to ThingsBoard using default MQTT port and 60 seconds keepalive interval
+client.connect(THINGSBOARD_HOST, 1883, 60)
 
 
 # Crear parametros de la base de datos si no exixte
@@ -55,7 +59,7 @@ def almacenarEnDatabase (horaTomada):
 		conn.commit()
 
 def enviarNube ():
-	print("Hola!")
+	print(sensor_data)
 
 
 
