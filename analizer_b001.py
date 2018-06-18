@@ -69,7 +69,7 @@ while True:
 		queMinutoLeido = leerMinuto
 
 	if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido) and (enviarDatos == 1)):
-		enviarDatos ()
+		#enviarDatos ()
 		enviarDatos = 0
 		queMinutoLeido1 = leerMinuto
 
