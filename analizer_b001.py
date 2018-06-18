@@ -54,7 +54,7 @@ def almacenarEnDatabase (horaTomada):
 		conn.commit()
 
 def enviarDatos ():
-	print("sensor_data.....")
+	print("Hola!")
 
 
 
@@ -69,7 +69,7 @@ while True:
 		queMinutoLeido = leerMinuto
 
 	if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido) and (enviarDatos == 1)):
-		#enviarDatos ()
+		enviarDatos ()
 		enviarDatos = 0
 		queMinutoLeido1 = leerMinuto
 
