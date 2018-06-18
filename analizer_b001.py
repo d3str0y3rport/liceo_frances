@@ -52,9 +52,7 @@ CREATE TABLE IF NOT EXISTS Temporales (
 def almacenarEnDatabase ():
 	horaTomada = datetime.now().replace(year=1, second=0, microsecond=0)
 
-	guardar en la base de datos el la resta de consumos
-
-	#toca hacer l a restar el valor anterior con el actual y guardarlo
+	#Hacer la restar el valor anterior con el actual y guardarlo
 
 	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
 		VALUES ( ?, ?)''', ( 'tempA1', sensor_data['adae']) )
