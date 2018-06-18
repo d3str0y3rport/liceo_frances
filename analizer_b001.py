@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS ConsumoC1 (
 ''')
 
 
-def almacenarEnDatabase (horaTomada):
+def almacenarEnDatabase ():
 	horaTomada = datetime.now().replace(year=1, second=0, microsecond=0)
 
 	#toca hacer l a restar el valor anterior con el actual y guardarlo
