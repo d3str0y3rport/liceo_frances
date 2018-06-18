@@ -125,7 +125,7 @@ try:
 
 
                 if contador == 1:
-                    tiempoParaLeer = time.time() + 5
+                    tiempoParaLeer = time.time() + 20
                     contador = 0
 
                 time.sleep(1)
