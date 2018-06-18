@@ -74,7 +74,7 @@ while True:
 
 	leerMinuto = int(datetime.now().minute)
 	if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido)):
-		almacenarEnDatabase (horaTomada)
+		almacenarEnDatabase ()
 		queMinutoLeido = leerMinuto
 
 	if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido1) and (enviarDatos == 1)):
