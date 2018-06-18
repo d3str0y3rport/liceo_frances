@@ -59,7 +59,9 @@ def almacenarEnDatabase (horaTomada):
 		conn.commit()
 
 def enviarNube ():
-	print(sensor_data)
+	client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
+	print("Enviado a la NUBE")
+
 
 
 
