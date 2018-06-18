@@ -49,16 +49,16 @@ def almacenarEnDatabase ():
 
 	#toca hacer l a restar el valor anterior con el actual y guardarlo
 
-		 cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
-		 	VALUES ( ?, ?)''', ( horaTomada, sensor_data['adae']) )
+		 # cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
+		 # 	VALUES ( ?, ?)''', ( horaTomada, sensor_data['adae']) )
 
 
-		 cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
-		 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['bdae']) )
+		 # cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
+		 # 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['bdae']) )
 
 
-		 cur.execute('''INSERT OR REPLACE INTO ConsumoC1 (timestampDato, value) 
-		 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['cdae']) )
+		 # cur.execute('''INSERT OR REPLACE INTO ConsumoC1 (timestampDato, value) 
+		 # 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['cdae']) )
 
 
 	print(horaTomada, sensor_data )
