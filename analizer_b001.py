@@ -176,65 +176,65 @@ while True:
 	            if data['operation'] == "getADAE":
 	                sensor_data['adae'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getBDAE":
 	                sensor_data['bdae'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getCDAE":
 	                sensor_data['cdae'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getFrequency":
 	                sensor_data['frecuencia'] = (data['value']/100.0)
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getPowerA":
 	                sensor_data['potenciaA'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getPowerB":
 	                sensor_data['potenciaB'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getPowerC":
 	                sensor_data['potenciaC'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getVoltageA":
 	                sensor_data['voltajeA'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getCurrentA":
 	                sensor_data['corrienteA'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getCurrentB":
 	                sensor_data['corrienteB'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getCurrentC":
 	                sensor_data['corrienteC'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getTemp":
 	                sensor_data['temperature'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
 	            elif data['operation'] == "getPowerT":
 	                sensor_data['potenciaTotal'] = data['value']
 	                mensajeRecibido = 0
-	                print(value)
+	                print(sensor_data)
 
