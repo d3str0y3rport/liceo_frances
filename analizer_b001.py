@@ -78,7 +78,7 @@ def almacenarEnDatabase ():
 		VALUES ( ?, ? )''', ( horaTomada, sensor_data['cdae']) )
 
 	print(horaTomada, sensor_data )
-	enviarConsumoNube = {'consumoA1': consumoTemporalA1, 'consumoB1': consumoTemporalB1, 'consumoC1': consumoTemporalC1}
+	enviarConsumoNube = {'horaDeLectura': horaTomada, 'consumoA1': consumoTemporalA1, 'consumoB1': consumoTemporalB1, 'consumoC1': consumoTemporalC1}
 	client.publish('v1/devices/me/telemetry', json.dumps(enviarConsumoNube), 1)
 
 	print("consumoA1", consumoTemporalA1 )
@@ -113,7 +113,7 @@ while True:
 	if time.time() >= tiempoParaLeer:
             if mensajeRecibido == 0:
             
-                print("pidiendo dato")
+                #print("pidiendo dato")
                 ser.flush()
 
                 if pedirDato == 1:
