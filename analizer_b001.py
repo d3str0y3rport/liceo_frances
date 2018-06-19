@@ -13,7 +13,7 @@ tiempoParaLeer = 0
 queMinutoLeido = -1
 queMinutoLeido1 = -1
 mensajeRecibido = 0
-sensor_data = {}#donde se guardan los datos constantemente (Volatil)
+sensor_data = {'adae': 0, 'bdae': 0, 'cdae': 0}#donde se guardan los datos constantemente (Volatil)
 
 
 conn = sqlite3.connect('datalog.sqlite')
