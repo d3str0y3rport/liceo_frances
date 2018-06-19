@@ -115,7 +115,7 @@ while True:
 	if time.time() >= tiempoParaLeer:
             if mensajeRecibido == 0:
             
-                print("pidiendo dato")
+                #print("pidiendo dato")
                 ser.flush()
 
                 if pedirDato == 1:
