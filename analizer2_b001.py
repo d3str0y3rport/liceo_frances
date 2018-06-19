@@ -114,7 +114,7 @@ while True:
 	if time.time() >= tiempoParaLeer:
             if mensajeRecibido == 0:
             
-                #print("pidiendo dato")
+                print("pidiendo dato")
                 ser.flush()
 
                 if pedirDato == 1:
@@ -215,7 +215,7 @@ while True:
 
 	if ser.inWaiting():
 	            recibidoSerial = ser.readline()
-	            #print ("Respuesta recibida: ", recibidoSerial)
+	            print ("Respuesta recibida: ", recibidoSerial)
 	            recibidoSerial = recibidoSerial.decode("utf-8")
 	            data = json.loads(recibidoSerial)
 	            pedirDato = pedirDato + 1
