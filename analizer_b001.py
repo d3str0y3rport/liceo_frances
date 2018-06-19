@@ -47,6 +47,13 @@ CREATE TABLE IF NOT EXISTS Temporales (
 );
 ''')
 
+cur.execute('''INSERT OR IGNORE INTO Temporales (nombre, value) 
+	VALUES ( ?, ?)''', ('tempA1', 0) )
+cur.execute('''INSERT OR IGNORE INTO Temporales (nombre, value) 
+	VALUES ( ?, ?)''', ('tempB1', 0) )
+cur.execute('''INSERT OR IGNORE INTO Temporales (nombre, value) 
+	VALUES ( ?, ?)''', ('tempC1', 0) )
+conn.commit()
 
 def almacenarEnDatabase ():
 
@@ -57,23 +64,24 @@ def almacenarEnDatabase ():
 	rows = dict(rows)
 	print('recibido', rows)
 
+
 	consumoTemporalA1 = sensor_data['adae'] - rows['tempA1']
 	consumoTemporalB1 = sensor_data['bdae'] - rows['tempB1']
 	consumoTemporalC1 = sensor_data['cdae'] - rows['tempC1']
 
 	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempA1', sensor_data['adae']) )
+		VALUES ( ?, ?)''', ('tempA1', sensor_data['adae']) )
 	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempB1', sensor_data['bdae']) )
+		VALUES ( ?, ?)''', ('tempB1', sensor_data['bdae']) )
 	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempC1', sensor_data['cdae']) )
+		VALUES ( ?, ?)''', ('tempC1', sensor_data['cdae']) )
 	
 	cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
-		VALUES ( ?, ? )''', ( horaTomada, sensor_data['adae']) )
+		VALUES ( ?, ? )''', (horaTomada, sensor_data['adae']) )
 	cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
-		VALUES ( ?, ? )''', ( horaTomada, sensor_data['bdae']) )
+		VALUES ( ?, ? )''', (horaTomada, sensor_data['bdae']) )
 	cur.execute('''INSERT OR REPLACE INTO ConsumoC1 (timestampDato, value) 
-		VALUES ( ?, ? )''', ( horaTomada, sensor_data['cdae']) )
+		VALUES ( ?, ? )''', (horaTomada, sensor_data['cdae']) )
 
 	# print(horaTomada, sensor_data )
 	enviarConsumoNube = {'consumoA1': consumoTemporalA1, 'consumoB1': consumoTemporalB1, 'consumoC1': consumoTemporalC1, 'consumoC1': consumoTemporalC1, "horaDeToma": str(horaTomada)}
@@ -101,7 +109,7 @@ client.loop_start()
 while True:
 
 	leerMinuto = int(datetime.now().minute)
-	if (((leerMinuto % 10) == 0) and (leerMinuto != queMinutoLeido)):
+	if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido)):
 		almacenarEnDatabase ()
 		queMinutoLeido = leerMinuto
 
@@ -113,7 +121,7 @@ while True:
 	if time.time() >= tiempoParaLeer:
             if mensajeRecibido == 0:
             
-                #print("pidiendo dato")
+                print("pidiendo dato")
                 ser.flush()
 
                 if pedirDato == 1:
@@ -214,7 +222,7 @@ while True:
 
 	if ser.inWaiting():
 	            recibidoSerial = ser.readline()
-	            #print ("Respuesta recibida: ", recibidoSerial)
+	            print ("Respuesta recibida: ", recibidoSerial)
 	            recibidoSerial = recibidoSerial.decode("utf-8")
 	            data = json.loads(recibidoSerial)
 	            pedirDato = pedirDato + 1
