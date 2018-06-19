@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS Temporales (
 
 
 def almacenarEnDatabase ():
+
 	horaTomada = datetime.now().replace(year=1, second=0, microsecond=0)
 
 	#Hacer la restar el valor anterior con el actual y guardarlo
@@ -69,19 +70,20 @@ def almacenarEnDatabase ():
 	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
 		VALUES ( ?, ?)''', ( 'tempC1', sensor_data['cdae']) )
 	
-	
-		 # cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
-		 # 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['bdae']) )
-
-
-		 # cur.execute('''INSERT OR REPLACE INTO ConsumoC1 (timestampDato, value) 
-		 # 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['cdae']) )
+	cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
+		VALUES ( ?, ? )''', ( horaTomada, sensor_data['adae']) )
+	cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
+		VALUES ( ?, ? )''', ( horaTomada, sensor_data['bdae']) )
+	cur.execute('''INSERT OR REPLACE INTO ConsumoC1 (timestampDato, value) 
+		VALUES ( ?, ? )''', ( horaTomada, sensor_data['cdae']) )
 
 	print(horaTomada, sensor_data )
+	enviarConsumoNube = {'consumoA1': consumoTemporalA1, 'consumoB1': consumoTemporalB1, 'consumoC1': consumoTemporalC1}
+	client.publish('v1/devices/me/telemetry', json.dumps(enviarConsumoNube), 1)
+
 	print("consumoA1", consumoTemporalA1 )
 	print("consumoB1", consumoTemporalB1 )
 	print("consumoC1", consumoTemporalC1 )
-	
 		# cur.execute('SELECT value FROM ConsumoA1 WHERE timestampDato = ? ', ('0001-06-16 10:09:00', ))
 		# artist_id = cur.fetchone()[0]
 		# print(artist_id)
