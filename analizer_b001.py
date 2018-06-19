@@ -54,13 +54,17 @@ def almacenarEnDatabase ():
 
 	#Hacer la restar el valor anterior con el actual y guardarlo
 
-	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempA1', sensor_data['adae']) )
-	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempB1', sensor_data['bdae']) )
-	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempC1', sensor_data['cdae']) )
-
+	# cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
+	# 	VALUES ( ?, ?)''', ( 'tempA1', sensor_data['adae']) )
+	# cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
+	# 	VALUES ( ?, ?)''', ( 'tempB1', sensor_data['bdae']) )
+	# cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
+	# 	VALUES ( ?, ?)''', ( 'tempC1', sensor_data['cdae']) )
+	
+	cur.execute('SELECT value FROM Temporales')
+	rows = cur.fetchall()
+	print('recibido', dict(rows))
+	
 
 		 # cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
 		 # 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['bdae']) )
