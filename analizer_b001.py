@@ -61,7 +61,7 @@ def almacenarEnDatabase ():
 	# cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
 	# 	VALUES ( ?, ?)''', ( 'tempC1', sensor_data['cdae']) )
 	
-	cur.execute('SELECT value FROM Temporales')
+	cur.execute('SELECT name, value FROM Temporales')
 	rows = cur.fetchall()
 	print('recibido', dict(rows))
 	
