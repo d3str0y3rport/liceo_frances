@@ -47,12 +47,12 @@ CREATE TABLE IF NOT EXISTS Temporales (
 );
 ''')
 
-cur.execute('''INSERT INTO Temporales (nombre, value) 
-	VALUES ( ?, ?)''', ( 'tempA1', 0) )
-cur.execute('''INSERT INTO Temporales (nombre, value) 
-	VALUES ( ?, ?)''', ( 'tempB1', 0) )
-cur.execute('''INSERT INTO Temporales (nombre, value) 
-	VALUES ( ?, ?)''', ( 'tempC1', 0) )
+cur.execute('''INSERT OR IGNORE INTO Temporales (nombre, value) 
+	VALUES ( ?, ?)''', ('tempA1', 0) )
+cur.execute('''INSERT OR IGNORE INTO Temporales (nombre, value) 
+	VALUES ( ?, ?)''', ('tempB1', 0) )
+cur.execute('''INSERT OR IGNORE INTO Temporales (nombre, value) 
+	VALUES ( ?, ?)''', ('tempC1', 0) )
 conn.commit()
 
 def almacenarEnDatabase ():
@@ -70,18 +70,18 @@ def almacenarEnDatabase ():
 	consumoTemporalC1 = sensor_data['cdae'] - rows['tempC1']
 
 	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempA1', sensor_data['adae']) )
+		VALUES ( ?, ?)''', ('tempA1', sensor_data['adae']) )
 	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempB1', sensor_data['bdae']) )
+		VALUES ( ?, ?)''', ('tempB1', sensor_data['bdae']) )
 	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempC1', sensor_data['cdae']) )
+		VALUES ( ?, ?)''', ('tempC1', sensor_data['cdae']) )
 	
 	cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
-		VALUES ( ?, ? )''', ( horaTomada, sensor_data['adae']) )
+		VALUES ( ?, ? )''', (horaTomada, sensor_data['adae']) )
 	cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
-		VALUES ( ?, ? )''', ( horaTomada, sensor_data['bdae']) )
+		VALUES ( ?, ? )''', (horaTomada, sensor_data['bdae']) )
 	cur.execute('''INSERT OR REPLACE INTO ConsumoC1 (timestampDato, value) 
-		VALUES ( ?, ? )''', ( horaTomada, sensor_data['cdae']) )
+		VALUES ( ?, ? )''', (horaTomada, sensor_data['cdae']) )
 
 	# print(horaTomada, sensor_data )
 	enviarConsumoNube = {'consumoA1': consumoTemporalA1, 'consumoB1': consumoTemporalB1, 'consumoC1': consumoTemporalC1, 'consumoC1': consumoTemporalC1, "horaDeToma": str(horaTomada)}
