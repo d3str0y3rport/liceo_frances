@@ -47,13 +47,13 @@ CREATE TABLE IF NOT EXISTS Temporales (
 );
 ''')
 
-cur.execute('''INSERT IF NOT EXISTS INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempA1', 0) )
-	cur.execute('''INSERT IF NOT EXISTS INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempB1', 0) )
-	cur.execute('''INSERT IF NOT EXISTS INTO Temporales (nombre, value) 
-		VALUES ( ?, ?)''', ( 'tempC1', 0) )
-	conn.commit()
+cur.execute('''INSERT INTO Temporales (nombre, value) 
+	VALUES ( ?, ?)''', ( 'tempA1', 0) )
+cur.execute('''INSERT INTO Temporales (nombre, value) 
+	VALUES ( ?, ?)''', ( 'tempB1', 0) )
+cur.execute('''INSERT INTO Temporales (nombre, value) 
+	VALUES ( ?, ?)''', ( 'tempC1', 0) )
+conn.commit()
 
 def almacenarEnDatabase ():
 
