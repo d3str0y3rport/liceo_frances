@@ -19,7 +19,7 @@ sensor_data = {}#donde se guardan los datos constantemente (Volatil)
 conn = sqlite3.connect('datalog.sqlite')
 cur = conn.cursor()
 THINGSBOARD_HOST = 'clientes.egeo.co'
-ACCESS_TOKEN = 'y5XV402DDK8TeQnpxBoA'
+ACCESS_TOKEN = 'SSDBNI2aIyD3TkQwDM2n'
 ser = serial.Serial('/dev/ttyS1', 230400, timeout = 0.1)
 client = mqtt.Client()
 client.username_pw_set(ACCESS_TOKEN)
