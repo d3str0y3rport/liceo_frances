@@ -58,9 +58,9 @@ def almacenarEnDatabase ():
 	print('recibido', rows)
 
 
-	consumoTemporalA1 = sensor_data['adae'] - rows['tempA1']
-	consumoTemporalB1 = sensor_data['bdae'] - rows['tempB1']
-	consumoTemporalC1 = sensor_data['cdae'] - rows['tempC1']
+	# consumoTemporalA1 = sensor_data['adae'] - rows['tempA1']
+	# consumoTemporalB1 = sensor_data['bdae'] - rows['tempB1']
+	# consumoTemporalC1 = sensor_data['cdae'] - rows['tempC1']
 
 	cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
 		VALUES ( ?, ?)''', ( 'tempA1', sensor_data['adae']) )
