@@ -53,6 +53,10 @@ def almacenarEnDatabase ():
 	horaTomada = datetime.now().replace(year=1, second=0, microsecond=0)
 
 	#Hacer la restar el valor anterior con el actual y guardarlo
+	cur.execute('SELECT nombre, value FROM Temporales')
+	rows = cur.fetchall()
+	rows = dict(rows)
+	print('recibido', rows)
 
 	# cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
 	# 	VALUES ( ?, ?)''', ( 'tempA1', sensor_data['adae']) )
@@ -61,11 +65,7 @@ def almacenarEnDatabase ():
 	# cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
 	# 	VALUES ( ?, ?)''', ( 'tempC1', sensor_data['cdae']) )
 	
-	cur.execute('SELECT nombre, value FROM Temporales')
-	rows = cur.fetchall()
-	print('recibido', dict(rows))
 	
-
 		 # cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
 		 # 	VALUES ( ?, ? )''', ( horaTomada, sensor_data['bdae']) )
 
