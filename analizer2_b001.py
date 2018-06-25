@@ -1,3 +1,9 @@
+#****************************
+#
+#A este tocó hacer que los valores los divida entre 10 porfque se calibro con el CF mal =0.1 en ves de 0.01
+#***************************
+
+
 import json
 import random
 import sqlite3
