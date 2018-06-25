@@ -13,6 +13,7 @@ tiempoParaLeer = 0
 queMinutoLeido = -1
 queMinutoLeido1 = -1
 mensajeRecibido = 0
+datosCompletos = 0
 sensor_data = {'adae': 0, 'bdae': 0, 'cdae': 0}#donde se guardan los datos constantemente (Volatil)
 
 
@@ -118,17 +119,6 @@ client.loop_start()
 
 try:
 	while True:
-
-		leerMinuto = int(datetime.now().minute)
-		if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido)):#PONER EN 10MINS
-			almacenarEnDatabase ()
-			print("minutoqueselee", leerMinuto)
-			queMinutoLeido = leerMinuto
-
-		if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido1) and (enviarDatos == 1)):
-			enviarNube ()
-			enviarDatos = 0
-			queMinutoLeido1 = leerMinuto
 
 		if time.time() >= tiempoParaLeer:
 	            if mensajeRecibido == 0:
@@ -315,7 +305,20 @@ try:
 		            elif data['operation'] == "getPowerT":
 		                sensor_data['potenciaTotal'] = data['value']
 		                mensajeRecibido = 0
+		                datosCompletos = 1
 		                #print(sensor_data)
+		
+		leerMinuto = int(datetime.now().minute)
+		if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido) and (datosCompletos == 1)):#PONER EN 10MINS
+			almacenarEnDatabase ()
+			print("minutoqueselee", leerMinuto)
+			queMinutoLeido = leerMinuto
+			datosCompletos = 0
+
+		if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido1) and (enviarDatos == 1)):
+			enviarNube ()
+			enviarDatos = 0
+			queMinutoLeido1 = leerMinuto
 except KeyboardInterrupt:
 	pass
 except:
