@@ -1,6 +1,7 @@
 #****************************
 #
-#A este tocó hacer que los valores los divida entre 10 porfque se calibro con el CF mal =0.1 en ves de 0.01
+#A este tocó hacer que los valores los divida entre 10 porfque el Anaizer1 se calibro con el CF mal =0.1 en ves de 0.01 y como el cofigo
+#se hiso todo igual y el firmware se cambio mal, toco hacer esto para no cambiar el firmware por ahora(Jun24-2018)
 #***************************
 
 
@@ -315,7 +316,7 @@ try:
 		                #print(sensor_data)
 		
 		leerMinuto = int(datetime.now().minute)
-		if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido) and (datosCompletos == 1)):#PONER EN 10MINS
+		if (((leerMinuto % 10) == 0) and (leerMinuto != queMinutoLeido) and (datosCompletos == 1)):#PONER EN 10MINS
 			almacenarEnDatabase ()
 			print("minutoqueselee", leerMinuto)
 			queMinutoLeido = leerMinuto
