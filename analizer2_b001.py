@@ -96,9 +96,8 @@ def almacenarEnDatabase ():
 			# artist_id = cur.fetchone()[0]
 			# print(artist_id)
 		conn.commit()
-	except KeyboardInterrupt:
-		return
 	except:
+		print("ERROR ALMACENANDODATOS")
 		pass
 
 def enviarNube ():
@@ -117,7 +116,7 @@ try:
 	while True:
 
 		leerMinuto = int(datetime.now().minute)
-		if (((leerMinuto % 10) == 0) and (leerMinuto != queMinutoLeido)):
+		if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido)):
 			almacenarEnDatabase ()
 			queMinutoLeido = leerMinuto
 
@@ -315,6 +314,7 @@ try:
 except KeyboardInterrupt:
 	pass
 except:
+	print("ERROR PRINCIPAL")
 	pass
 
 client.loop_stop()
