@@ -98,7 +98,7 @@ def almacenarEnDatabase ():
 		conn.commit()
 	except KeyboardInterrupt:
 		return
-    except:
+	except:
     	pass
 
 def enviarNube ():
