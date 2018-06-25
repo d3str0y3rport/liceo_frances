@@ -69,6 +69,10 @@ def almacenarEnDatabase ():
 		consumoTemporalB1 = sensor_data['bdae'] - rows['tempB1']
 		consumoTemporalC1 = sensor_data['cdae'] - rows['tempC1']
 
+		print("sensor_dataA1", sensor_data['adae'] )
+		print("sensor_dataB1", sensor_data['bdae'] )
+		print("sensor_dataC1", sensor_data['cdae'] )
+
 		cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
 			VALUES ( ?, ?)''', ('tempA1', sensor_data['adae']) )#no deberia der consumoTemporalA1???
 		cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
