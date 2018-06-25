@@ -107,10 +107,8 @@ def enviarNube ():
 		client.connect(THINGSBOARD_HOST, 1883, 60)
 		client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
 		print("Enviado a la NUBE")
-	except KeyboardInterrupt:
+	except:
 		return
-    except:
-    	pass
 
 
 client.loop_start()
