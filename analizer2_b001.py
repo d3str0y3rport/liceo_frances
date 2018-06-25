@@ -102,6 +102,7 @@ def almacenarEnDatabase ():
 		pass
 
 def enviarNube ():
+
 	try:
 		client.connect(THINGSBOARD_HOST, 1883, 60)
 		client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
