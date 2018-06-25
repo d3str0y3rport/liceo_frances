@@ -313,7 +313,7 @@ try:
 		                mensajeRecibido = 0
 		                #print(sensor_data)
 except KeyboardInterrupt:
-	return
+	pass
 except:
 	pass
 
