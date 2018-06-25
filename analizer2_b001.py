@@ -87,9 +87,9 @@ def almacenarEnDatabase ():
 		enviarConsumoNube = {'consumoA1': consumoTemporalA1, 'consumoB1': consumoTemporalB1, 'consumoC1': consumoTemporalC1, 'consumoC1': consumoTemporalC1, "horaDeToma": str(horaTomada)}
 		client.publish('v1/devices/me/telemetry', json.dumps(enviarConsumoNube), 1)
 
-		# print("consumoA1", consumoTemporalA1 )
-		# print("consumoB1", consumoTemporalB1 )
-		# print("consumoC1", consumoTemporalC1 )
+		print("consumoA1", consumoTemporalA1 )
+		print("consumoB1", consumoTemporalB1 )
+		print("consumoC1", consumoTemporalC1 )
 
 		
 			# cur.execute('SELECT value FROM ConsumoA1 WHERE timestampDato = ? ', ('0001-06-16 10:09:00', ))
@@ -118,6 +118,7 @@ try:
 		leerMinuto = int(datetime.now().minute)
 		if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido)):#PONER EN 10MINS
 			almacenarEnDatabase ()
+			print("minutoqueselee", leerMinuto)
 			queMinutoLeido = leerMinuto
 
 		if (((leerMinuto % 1) == 0) and (leerMinuto != queMinutoLeido1) and (enviarDatos == 1)):
