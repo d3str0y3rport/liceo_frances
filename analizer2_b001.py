@@ -66,27 +66,27 @@ def almacenarEnDatabase ():
 	print('recibido', rows)
 
 	try:
-		consumoTemporalA1 = sensor_data['adae'] - rows['tempA1']
-		consumoTemporalB1 = sensor_data['bdae'] - rows['tempB1']
-		consumoTemporalC1 = sensor_data['cdae'] - rows['tempC1']
+		consumoTemporalA1 = (sensor_data['adae'] / 10) - rows['tempA1']
+		consumoTemporalB1 = (sensor_data['bdae'] / 10) - rows['tempB1']
+		consumoTemporalC1 = (sensor_data['cdae'] / 10) - rows['tempC1']
 
 		print("sensor_dataA1", sensor_data['adae'] )
 		print("sensor_dataB1", sensor_data['bdae'] )
 		print("sensor_dataC1", sensor_data['cdae'] )
 
 		cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-			VALUES ( ?, ?)''', ('tempA1', sensor_data['adae']) )#no deberia der consumoTemporalA1???
+			VALUES ( ?, ?)''', ('tempA1', (sensor_data['adae'] / 10)) )#no deberia der consumoTemporalA1???
 		cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-			VALUES ( ?, ?)''', ('tempB1', sensor_data['bdae']) )
+			VALUES ( ?, ?)''', ('tempB1', (sensor_data['bdae']) / 10) )
 		cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-			VALUES ( ?, ?)''', ('tempC1', sensor_data['cdae']) )
+			VALUES ( ?, ?)''', ('tempC1', (sensor_data['cdae']) / 10) )
 		
 		cur.execute('''INSERT OR REPLACE INTO ConsumoA1 (timestampDato, value) 
-			VALUES ( ?, ? )''', (horaTomada, sensor_data['adae']) )
+			VALUES ( ?, ? )''', (horaTomada, (sensor_data['adae'])/10) )
 		cur.execute('''INSERT OR REPLACE INTO ConsumoB1 (timestampDato, value) 
-			VALUES ( ?, ? )''', (horaTomada, sensor_data['bdae']) )
+			VALUES ( ?, ? )''', (horaTomada, (sensor_data['bdae'])/10) )
 		cur.execute('''INSERT OR REPLACE INTO ConsumoC1 (timestampDato, value) 
-			VALUES ( ?, ? )''', (horaTomada, sensor_data['cdae']) )
+			VALUES ( ?, ? )''', (horaTomada, (sensor_data['cdae'])/10) )
 
 		# print(horaTomada, sensor_data )
 		enviarConsumoNube = {'consumoA1': consumoTemporalA1, 'consumoB1': consumoTemporalB1, 'consumoC1': consumoTemporalC1, 'consumoC1': consumoTemporalC1, "horaDeToma": str(horaTomada)}
