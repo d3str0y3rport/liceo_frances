@@ -99,7 +99,7 @@ def almacenarEnDatabase ():
 	except KeyboardInterrupt:
 		return
 	except:
-    	pass
+		pass
 
 def enviarNube ():
 	try:
