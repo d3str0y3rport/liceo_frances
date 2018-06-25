@@ -309,7 +309,7 @@ try:
 		                #print(sensor_data)
 		
 		leerMinuto = int(datetime.now().minute)
-		if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido) and (datosCompletos == 1)):#PONER EN 10MINS
+		if (((leerMinuto % 10) == 0) and (leerMinuto != queMinutoLeido) and (datosCompletos == 1)):#PONER EN 10MINS
 			almacenarEnDatabase ()
 			print("minutoqueselee", leerMinuto)
 			queMinutoLeido = leerMinuto
