@@ -70,7 +70,7 @@ def almacenarEnDatabase ():
 		consumoTemporalC1 = sensor_data['cdae'] - rows['tempC1']
 
 		cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
-			VALUES ( ?, ?)''', ('tempA1', sensor_data['adae']) )
+			VALUES ( ?, ?)''', ('tempA1', sensor_data['adae']) )#no deberia der consumoTemporalA1???
 		cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
 			VALUES ( ?, ?)''', ('tempB1', sensor_data['bdae']) )
 		cur.execute('''INSERT OR REPLACE INTO Temporales (nombre, value) 
@@ -116,7 +116,7 @@ try:
 	while True:
 
 		leerMinuto = int(datetime.now().minute)
-		if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido)):
+		if (((leerMinuto % 3) == 0) and (leerMinuto != queMinutoLeido)):#PONER EN 10MINS
 			almacenarEnDatabase ()
 			queMinutoLeido = leerMinuto
 
